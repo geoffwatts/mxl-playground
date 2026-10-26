@@ -182,10 +182,8 @@ a demonstrated automatic recovery guarantee.
 - [LAGs, LACP and grouped VLAN controls](docs/LAGS.md)
 - [Firmware page](docs/FIRMWARE-UPDATES.md), [management VLAN](docs/MANAGEMENT-VLAN.md)
   and [browser terminal](docs/TERMINAL.md)
-- [Release gates](docs/RELEASE-PLAN.md), [roadmap](docs/ROADMAP.md) and
-  [publication review](docs/REVIEW.md)
+- [Roadmap and remaining hardware validation](docs/ROADMAP.md)
 - [Contributing and offline checks](docs/CONTRIBUTING.md)
-- [GitHub preview and publication path](docs/GITHUB.md)
 
 ## Licence and credits
 

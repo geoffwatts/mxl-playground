@@ -30,7 +30,7 @@ jobs:
           python3 -m unittest discover -s tests -p 'test_serial_installer.py'
           python3 -m unittest discover -s tests -p 'test_upload_native_ui.py'
           python3 -m unittest discover -s tests -p 'test_clean_build.py'
-          python3 -m unittest discover -s tests -p 'test_publication.py'
+          python3 -m unittest discover -s tests -p 'test_source_tree.py'
           python3 -m unittest discover -s tests -p 'test_migration.py'
       - name: Frontend source tests
         run: node --test tests/sfp.test.mjs tests/inventory.test.mjs tests/qos.test.mjs tests/live-session.test.mjs tests/console.test.mjs tests/lag.test.mjs
@@ -43,7 +43,3 @@ jobs:
           python3 tools/build_sfp_endpoint.py
           python3 tools/prepare_inventory_endpoint.py
           python3 tools/build_inventory_endpoint.py
-      - name: Reproduce source archive
-        run: |
-          python3 tools/package_developer_preview.py
-          python3 tools/prepare_github_repo.py --output-dir artifacts/ci-source-review

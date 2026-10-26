@@ -1,13 +1,13 @@
 {
   "format": "mxl-source-review/v1",
-  "status": "LOCAL REVIEW CANDIDATE; NOT PUBLISHED",
+  "status": "Source inventory; vendor firmware excluded",
   "licence_for_new_source": "MIT",
   "firmware_included": false,
   "captured_configuration_included": false,
   "files": {
     ".github/workflows/source-checks.yml": {
-      "bytes": 2279,
-      "sha256": "04d9a901119668aab14b47a6d66ad91d66f071a2b1e189c6df506cbbdc3dc710"
+      "bytes": 2085,
+      "sha256": "2e8700b66ed8058dc9db20fbe509cddec4687fd54c8230aa44a57d481a5ea8c0"
     },
     ".gitignore": {
       "bytes": 179,
@@ -18,8 +18,8 @@
       "sha256": "3921800b801e4f2b8de5fc1c1e5f2d90d055f76b3f9828965917e40946aaf90c"
     },
     "README.md": {
-      "bytes": 10473,
-      "sha256": "22541dab9df03812b01f8b14d971c5351f275baa9a391c86214f54bff85097a4"
+      "bytes": 10369,
+      "sha256": "0a47782b820f037d7eee44fa37f297703d267703bf533f95108d81735cad547f"
     },
     "designs/mxl-management/LICENSE-RTLPlayground": {
       "bytes": 1087,
@@ -134,8 +134,8 @@
       "sha256": "a905862cdaaf969b95912b89cb24c5a56e6652f02d0994fa2e54f8af955e90d0"
     },
     "docs/CONTRIBUTING.md": {
-      "bytes": 1525,
-      "sha256": "c2036a3175057d7db236606a76ff0869727f2dfdd8bcdc8f921519cbd81d66a0"
+      "bytes": 2154,
+      "sha256": "d7ffe369062465d506606d6bfe618f54525fba676cb670a07780330e84b884cf"
     },
     "docs/DNS-SNTP-NOTES.md": {
       "bytes": 4155,
@@ -144,10 +144,6 @@
     "docs/FIRMWARE-UPDATES.md": {
       "bytes": 2626,
       "sha256": "51f54f5507611d831c18e2d1da1864860c1490b4a5a32af18ed1f943b4164be4"
-    },
-    "docs/GITHUB.md": {
-      "bytes": 2151,
-      "sha256": "99b075b3e75713e9ddfd6529dbae01bdeb57aafbf509fa5e74e9091cf5d81410"
     },
     "docs/INSTALL.md": {
       "bytes": 8283,
@@ -162,8 +158,8 @@
       "sha256": "d7aa93316eb6b8d8f2aef3e688179337248f8b0f7b6d55d4482135506a906852"
     },
     "docs/MIGRATION.md": {
-      "bytes": 8662,
-      "sha256": "c862b000f1678ff1c5d23c61c5d539bf9490ad2728d7c4b97b7e253d301196d7"
+      "bytes": 8658,
+      "sha256": "652f2b64b452d54818233a28739f5972fa2ac51942d9edab7b23ecf88bcc53a5"
     },
     "docs/NATIVE-WRITES.md": {
       "bytes": 3690,
@@ -173,21 +169,13 @@
       "bytes": 3560,
       "sha256": "7bdeaa7ee889200437560f2380917dc87705a753b971483f27e9c72450681962"
     },
-    "docs/RELEASE-PLAN.md": {
-      "bytes": 5108,
-      "sha256": "04fb7c8470d21e896cba2c8bf03a3f977e85158932a84366dc4268c1a78cb538"
-    },
-    "docs/REVIEW.md": {
-      "bytes": 4667,
-      "sha256": "14b1ffd6b825b9c4df75e26e3376e612fc0ed995e93feacb5418f57ad00689f2"
-    },
     "docs/ROADMAP.md": {
-      "bytes": 1984,
-      "sha256": "2cb5df525d1f4695bacbe809be6b586b20bde3844c768f2bb5d6acd3cff4a86d"
+      "bytes": 1972,
+      "sha256": "5bc8457a5a291c0e7f3214841f5147a2113c0773a5202c9faef87449343999d4"
     },
     "docs/SERIAL-INSTALLER.md": {
-      "bytes": 7459,
-      "sha256": "56d03bd54f4548ccd2af808e4f720b07897be40d302e7d4035f2276927aa6c64"
+      "bytes": 7110,
+      "sha256": "26049ed1fb6ec466369a86465e6ef55646a9d453d554d00b7a7eb8f5bc9121bc"
     },
     "docs/SFP-NOTES.md": {
       "bytes": 8160,
@@ -421,10 +409,6 @@
       "bytes": 1528,
       "sha256": "30df5c2dab04da992f7387ec40b51d4ea8e2d40f2da6b35725c0084cfbed9339"
     },
-    "tests/test_publication.py": {
-      "bytes": 2119,
-      "sha256": "b26fde1d4de5f2855478bd3584907e847e7709899a71bbfecc4a2b63c77f6454"
-    },
     "tests/test_serial_installer.py": {
       "bytes": 15957,
       "sha256": "45d2f4ca8d4931e42d1cb4ec04d81e9139c23be4e26af48e2576ba1f5c146063"
@@ -432,6 +416,10 @@
     "tests/test_sfp_transfer_plan.py": {
       "bytes": 4608,
       "sha256": "551a618bee6666032247eb013d7572f0e0e7df9e1a8546d976a837dd8aca1458"
+    },
+    "tests/test_source_tree.py": {
+      "bytes": 3130,
+      "sha256": "c1ed4da72fd168a8d429a368726f8e8ee6d87d1c866369dc88a541182fa2fec9"
     },
     "tests/test_upload_native_ui.py": {
       "bytes": 5353,
@@ -502,8 +490,8 @@
       "sha256": "147732bc101978ac2ad939bc269ca71a134bfece42615feb99d845be4c9f92c8"
     },
     "tools/check_source_tree.py": {
-      "bytes": 1881,
-      "sha256": "6b99b2641273fbb9780ad839016a026e4b01a9cf8ce0d98e1d874316c492623b"
+      "bytes": 4059,
+      "sha256": "48b0db6bc65e3dcd7b4a5b97dbe6c8738aa8b83d9ce7afbef59cea9bc931d64a"
     },
     "tools/collect_diagnostics.py": {
       "bytes": 3277,
@@ -544,14 +532,6 @@
     "tools/native_layout.py": {
       "bytes": 1996,
       "sha256": "e7c3f12c4eaeafc36d4ab13bb488e552a7e139357d5e2cbf74f6664682afbf8a"
-    },
-    "tools/package_developer_preview.py": {
-      "bytes": 9294,
-      "sha256": "0762c5e2ea3e6840ae917a815e464fa702289a138630a143bdb2ee1dfa2c2d17"
-    },
-    "tools/prepare_github_repo.py": {
-      "bytes": 3643,
-      "sha256": "e7ab90901a15d9ee6ac459a21a778c334c31f26e825764f0c005b6a193d8a2c0"
     },
     "tools/prepare_inventory_endpoint.py": {
       "bytes": 5143,

@@ -25,5 +25,5 @@ release. One installed development unit supplies the current hardware evidence.
 - [x] Per-region V1 migration admission with owner-data preservation checks.
 
 An SSH server and additional vendors/models are later work. The SNTP/STP startup
-timing investigation is deferred. See RELEASE-PLAN.md for the three installation
-paths and INSTALL.md for the evidence/limits of the current serial operation.
+timing investigation is deferred. See MIGRATION.md for V1 layout migration
+and INSTALL.md for the evidence/limits of the current serial operation.

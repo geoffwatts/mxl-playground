@@ -130,11 +130,3 @@ Local tests cover the stock-record write/readback sequence, false verification
 acknowledgements, changed sectors, transport permissions, active-slot rejection,
 full-size simulated serial programming and interrupted/premature HTTP replies.
 The actual initial stock-to-custom transition remains untested on a stock unit.
-
-## Private outputs
-
-Each new output directory is private (0700); captures/journal files are 0600.
-It contains `state.json`, `uart.log`, boot-area captures and, in HTTP mode, the
-running firmware export. Do not commit or post these files: they may contain
-device identity, vendor firmware and board-specific records. Source packaging
-excludes them.

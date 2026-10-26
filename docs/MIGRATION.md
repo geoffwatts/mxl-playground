@@ -169,4 +169,4 @@ readback verification. Two firmware slot pairs do not prove automatic fallback.
 Ordinary custom-WSP web updates after bootstrap use the inactive slots and have a
 different failure boundary. Keep the full-layout migration separate from that
 routine update path. Follow [INSTALL.md](INSTALL.md) for the current bootstrap
-limitations and [RELEASE-PLAN.md](RELEASE-PLAN.md) for the remaining release gates.
+limitations and [ROADMAP.md](ROADMAP.md) for the remaining hardware validation.

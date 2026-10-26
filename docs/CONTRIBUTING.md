@@ -9,6 +9,21 @@ configuration, UART logs, credentials or private keys. Generated output belongs
 under `artifacts/` and private inputs under `input/`. Public hashes, our own
 patches and synthetic tests can be included.
 
+## Source inventory
+
+The source manifest records tracked file hashes and supports CI integrity/link
+checks. After changing source, stage new or removed files, then refresh it:
+
+```sh
+git add PATHS_YOU_CHANGED
+python3 tools/check_source_tree.py --refresh --git
+git add source-manifest.json
+```
+
+This inventories tracked files only. Review staged changes for credentials,
+firmware and device captures; hashes alone are not a secret scanner. Anonymise
+screenshots before committing them.
+
 ## Offline source checks
 
 ```sh
@@ -17,7 +32,9 @@ python3 -m unittest discover -s tests -p 'test_bootstrap_preflight.py'
 python3 -m unittest discover -s tests -p 'test_serial_installer.py'
 python3 -m unittest discover -s tests -p 'test_upload_native_ui.py'
 python3 -m unittest discover -s tests -p 'test_clean_build.py'
-node --test tests/sfp.test.mjs tests/inventory.test.mjs tests/qos.test.mjs tests/live-session.test.mjs tests/console.test.mjs
+python3 -m unittest discover -s tests -p 'test_source_tree.py'
+python3 -m unittest discover -s tests -p 'test_migration.py'
+node --test tests/sfp.test.mjs tests/inventory.test.mjs tests/qos.test.mjs tests/live-session.test.mjs tests/console.test.mjs tests/lag.test.mjs
 python3 tools/build_native_ui.py --without-cli --output-dir artifacts/ui
 ```
 
