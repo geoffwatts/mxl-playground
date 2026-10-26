@@ -1,37 +1,106 @@
 # MxL Playground
 
-A replacement management interface and native extensions for a researched
-MaxLinear MxL862xx switch, running inside its existing Zephyr/WSP firmware.
-Inspired by [RTLPlayground](https://github.com/logicog/RTLPlayground).
+**Better VLANs. Visible optics. A real terminal.**
 
-**Experimental developer preview.** Running on one GoodTop ZX310S-8T2XS,
-originally on 1.0.0.6 and migrated to 2.0.0.4. This is source for local building
-and review, not a universal firmware image or a supported stock-switch installer.
-No vendor WSP, GPHY, bootloader, device backup or signing key is distributed.
+Your 2.5GbE switch has capable hardware. Its management interface should make
+that easy to use. MxL Playground brings a modern, on-device web UI to the
+GoodTop ZX310S-8T2XS: a clear VLAN editor, live SFP diagnostics, useful switch
+identity and the actual Zephyr shell in your browser.
 
-**Only flash if you have a compatible SPI programmer, or can obtain one quickly
-(for example overnight from Amazon where available).** A broken WSP may also
-remove the UART shell; serial access alone is not guaranteed recovery.
+Inspired by [RTLPlayground](https://github.com/logicog/RTLPlayground), built for
+our researched **MaxLinear MxL862xx / WSP** platform. The interface runs on the
+switch's existing web server. Daily management needs only a browser.
 
-## Features and evidence
+[Build it](docs/BUILD.md) · [Install it](docs/SERIAL-INSTALLER.md) ·
+[Recovery](docs/RECOVERY.md) · [Roadmap](docs/ROADMAP.md)
 
-- On-switch UI with switch name, location/contact, active navigation and a
-  U/T/absent VLAN editor. Saved identity has warm-reboot evidence.
-- Management pages for the recovered factory HTTP features, including STP,
-  LLDP, aggregation, multicast, QoS and access controls. Not every write,
-  persistence path or forwarding behavior has been hardware-verified.
-- Jumbo controls and SFP identity/DOM, including both cages, hotplug and absent
-  modules. Maximum-MTU forwarding and linked optical traffic remain untested.
-- Management VLAN with timed rollback, confirmation and saved policy. Integrated
-  VLAN-1 warm-start tests pass; integrated tagged-client/cold-power tests remain.
-- Browser access to the real Zephyr shell, sharing the UART transport, behind an
-  explicit flash/RAM warning and acknowledgement. No SSH server is installed.
-- Native firmware download/upload, a session fix and DNS-context lifetime fix.
+![MxL Playground overview: named switch, live port map and device status](docs/images/overview.png)
 
-This is not Linux. A displayed control is not a claim that its entire feature
-has passed validation. The vendor backend has one global login session: another
-browser or diagnostic login can invalidate it. The terminal is privileged and
-can overwrite flash/RAM or stop the switch booting.
+> **Experimental developer preview.** Tested on one GoodTop ZX310S-8T2XS,
+> migrated from 1.0.0.6 to the exact supported 2.0.0.4 baseline. This is not a
+> universal firmware image or a production-ready installation path.
+>
+> **Only flash if you have a compatible SPI programmer, or can obtain one
+> quickly—for example overnight from Amazon where available.** The UART shell
+> is part of WSP; a broken WSP can also remove serial recovery.
+
+## What makes it worth opening the case?
+
+- **VLANs you can read at a glance.** Tagged, untagged and excluded membership
+  in one matrix, with per-port controls and PVIDs alongside the editor.
+- **Optics you can inspect.** SFP identity, temperature, voltage, laser bias,
+  TX/RX power and alarms, including correct empty-cage handling.
+- **A switch with an identity.** Give it a name, location and contact. The name
+  is the homepage title and is also used for LLDP System Name.
+- **The real shell, in your browser.** A shared Zephyr terminal with native
+  commands, history and completion, behind an explicit flash/RAM warning.
+- **Management that fits the job.** Management-VLAN controls with timed
+  rollback, jumbo-frame controls, LLDP, STP, aggregation, mirroring, multicast,
+  QoS, firmware export and checked web updates.
+- **Local builds from your own firmware.** Supply the exact factory image;
+  the patcher verifies it and builds your custom update locally. Vendor WSP,
+  GPHY and bootloader binaries are not bundled with this project.
+
+## Take a look
+
+These are screenshots of the running on-switch interface, with device names,
+addresses, contact details and module serial numbers anonymised. Click an image
+for its full resolution. The VLAN draft below was **never applied**.
+
+### VLANs without the guesswork
+
+The membership matrix stays visible while you edit individual ports. This is an
+unsaved example with access ports and tagged SFP+ ports; the live switch remains
+on its existing configuration.
+
+![Unsaved Guests VLAN draft with untagged access ports and tagged SFP+ ports](docs/images/vlan-editor.png)
+
+### See what your SFP is doing
+
+An empty cage alongside a real BiDi module: identity and DOM readings are
+available even with the optical link down. A missing reading stays missing.
+
+![SFP identity and live optical diagnostics, including an empty cage](docs/images/sfp.png)
+
+### A real console, not a command-shaped settings page
+
+This is the switch's native Zephyr shell, sharing the physical UART transport.
+The capture shows the read-only `kernel version` command. It is a privileged
+shell, not a sandbox; flash and RAM writes are possible.
+
+![Native Zephyr shell running inside the web interface](docs/images/terminal.png)
+
+### The rest of the workbench
+
+| Ports and jumbo frames | LLDP and neighbors |
+| --- | --- |
+| [![Port configuration and frame-length status](docs/images/ports.png)](docs/images/ports.png) | [![LLDP identity and neighbor discovery](docs/images/lldp.png)](docs/images/lldp.png) |
+
+| Identity and management | Management VLAN |
+| --- | --- |
+| [![Switch name, location and contact](docs/images/identity.png)](docs/images/identity.png) | [![Management VLAN controls with automatic rollback](docs/images/management-vlan.png)](docs/images/management-vlan.png) |
+
+| Firmware backup and updates | Dark mode |
+| --- | --- |
+| [![Native firmware backup and checked update controls](docs/images/firmware.png)](docs/images/firmware.png) | [![VLAN editor in dark mode](docs/images/vlans-dark.png)](docs/images/vlans-dark.png) |
+
+## What is tested—and what is still experimental?
+
+The interface and native extensions are running on the development switch.
+Native web uploads, named identity, saved location/contact, LLDP startup, SFP
+reads/hotplug and the shared browser/UART terminal have hardware evidence.
+Management-VLAN confirmation, rollback and VLAN-1 warm startup pass. The guarded
+installer has completed a live update on the already-bootstrapped unit.
+
+The initial stock-to-custom transition, complete serial-only WSP upload/boot,
+full SPI recovery, integrated tagged-client/cold-power isolation, linked optical
+traffic, maximum-MTU forwarding and broader persistence tests remain open.
+See the [roadmap](docs/ROADMAP.md) and [installation evidence](docs/SERIAL-INSTALLER.md).
+Not every visible configuration control has been hardware-verified end to end.
+
+The vendor backend has one global login session, so another browser or tool can
+invalidate yours. This build runs Zephyr/WSP; no Linux userspace or SSH server
+is installed.
 
 ## Supported starting point
 

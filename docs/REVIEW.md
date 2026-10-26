@@ -33,7 +33,14 @@ the packager's own private-key rejection expression contains the words
 research capture directory, imported repository or programmer binary is allowed
 into this archive.
 
-The package manifest hashes each included source. These findings apply to the
+The README includes ten individually reviewed desktop screenshots of the running
+interface. Device names, IP/MAC addresses, contact details and module serial
+numbers were anonymised before capture. The VLAN example is an unapplied draft;
+the terminal shows only a read-only version query. Each approved PNG is explicitly
+allowlisted and hash-pinned in the packager. Raw captures and mobile screenshots
+remain excluded.
+
+The package manifest hashes each included source and approved screenshot. These findings apply to the
 reviewed allowlist, not future additions or a recursive workspace upload.
 Regenerate and inspect the candidate after source changes; do not add firmware
 or captured test fixtures simply to make a public test pass.

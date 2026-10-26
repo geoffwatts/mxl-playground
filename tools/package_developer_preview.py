@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Create a deterministic, allowlisted LOCAL source review archive, not a release.
 
-Never recursively packages the workspace. No firmware, captures, generated CLI
-help, vendor trees, keys, credentials, user configuration or binaries included.
+Never recursively packages the workspace. No firmware, raw captures, generated CLI
+help, vendor trees, keys, credentials or user configuration included.
+Only explicitly reviewed, anonymised product screenshots may be included.
 """
 import hashlib
 import json
@@ -52,6 +53,9 @@ FILES['GITHUB.md']='docs/GITHUB.md'
 # Keep GitHub's root focused on README and source directories.
 FILES={('docs/'+target if target.endswith('.md') and target!='README.md' else target):source
        for target,source in FILES.items()}
+# Individually reviewed desktop screenshots; raw captures remain excluded.
+REVIEWED_SCREENSHOTS={'docs/images/overview.png': '6fe906ad10c36de5ab0fb398c02cd75c12f161325962a07e8e127ad3364bd023', 'docs/images/vlan-editor.png': '6d4bf7712b2635cab1d11bf215a271f39ff0f34a61720e3f99fa578b80ed8a8b', 'docs/images/sfp.png': '3a5efcc52e591fb402a0e3e3b7ee9be9bef553535c85645f9ba27417fdc0ebec', 'docs/images/terminal.png': '7c5ec9112a5d754ed2dd7e773783a93113788c2c0d8dbf269d967eda9468e441', 'docs/images/ports.png': 'c3e8e20ac59b63aadc75a8e4e062d6eef2f9dc80eeda03c3cbb24530d1458eb1', 'docs/images/lldp.png': '37a24836c0d99ba8492be47259f2ff388f66f7884636c0af749a364647006749', 'docs/images/identity.png': '35ce00d302469346003584190f105a0d4ee9b159e09a1affb89dc97743ea35fa', 'docs/images/management-vlan.png': 'a9344bc7c3ba5daff74866b6c247bc5f7d9f54979e560b5bdf36588c6460d4ae', 'docs/images/firmware.png': '20bd2be351e52098fcef0f816f2dbf49a8b925e455e5a477ad24bfec2554a954', 'docs/images/vlans-dark.png': '4acc7c0f060ffa9956e48984c60262e25cafd8607dd5216549f83ffc8cf6ef16'}
+FILES.update({name:name for name in REVIEWED_SCREENSHOTS})
 DENY=[re.compile(rb'-----BEGIN (?:RSA |EC |OPENSSH |ENCRYPTED )?PRIVATE KEY-----'),re.compile(rb'(?i)session=[a-f0-9]{24,}'),re.compile(rb'(?i)(?:password|passwd)\s*[:=]\s*[\"\'][^\"\'\r\n]{8,}[\"\']')]
 
 
@@ -65,6 +69,9 @@ def main():
         source_path=ROOT/source
         if not source_path.exists() and source.startswith(('docs/','research/')):source_path=ROOT/target
         data=source_path.read_bytes()
+        if p.suffix == ".png":
+            if not data.startswith(b"\x89PNG\r\n\x1a\n") or REVIEWED_SCREENSHOTS.get(target)!=hashlib.sha256(data).hexdigest():
+                raise ValueError("Unreviewed screenshot "+target)
         if any(pattern.search(data) for pattern in DENY):
             if REVIEWED_SYNTHETIC_FIXTURES.get(source)!=hashlib.sha256(data).hexdigest():raise ValueError('Potential secret in allowlisted file '+source)
         contents[target]=data;manifest['files'][target]={'bytes':len(data),'sha256':hashlib.sha256(data).hexdigest()}

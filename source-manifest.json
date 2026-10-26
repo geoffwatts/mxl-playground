@@ -18,8 +18,8 @@
       "sha256": "3921800b801e4f2b8de5fc1c1e5f2d90d055f76b3f9828965917e40946aaf90c"
     },
     "README.md": {
-      "bytes": 5427,
-      "sha256": "1de77f0d1e3c78ac801d505937ad6180d19c6168b0e4667bca0efd18f72ac648"
+      "bytes": 8751,
+      "sha256": "f2df1990e014dbd67c31af93320e2391f0c71427a25e9c8d7582e2ec89f8ded4"
     },
     "designs/mxl-management/LICENSE-RTLPlayground": {
       "bytes": 1087,
@@ -126,8 +126,8 @@
       "sha256": "903a72fc1770965c0206ba053fadd2064d77816a415d1d58c0f0b97a957b6ce8"
     },
     "docs/BUILD.md": {
-      "bytes": 6620,
-      "sha256": "586cde1ccfc546e96c7307c028dedb167251848e04dcb3fcb3cd86875a8175d8"
+      "bytes": 9529,
+      "sha256": "a905862cdaaf969b95912b89cb24c5a56e6652f02d0994fa2e54f8af955e90d0"
     },
     "docs/CONTRIBUTING.md": {
       "bytes": 1525,
@@ -170,8 +170,8 @@
       "sha256": "189a7b49c5217b09db8c0e6a79befa6c868f36b6cb797d6dd3982675c798ad9b"
     },
     "docs/REVIEW.md": {
-      "bytes": 4181,
-      "sha256": "02ee4bee9bae73b78739892c41869a5534759c9ab0baf1c401ebfb601d546bb3"
+      "bytes": 4625,
+      "sha256": "334cc898827481093ebc0328b6f792a6db2b202c62f724c5b80c29622c3fa97a"
     },
     "docs/ROADMAP.md": {
       "bytes": 1705,
@@ -192,6 +192,46 @@
     "docs/THIRD_PARTY.md": {
       "bytes": 1192,
       "sha256": "9c85f4ce4999407ad0e6d8e8b650885b164e27a17662558c70b052137cb3e353"
+    },
+    "docs/images/firmware.png": {
+      "bytes": 145889,
+      "sha256": "20bd2be351e52098fcef0f816f2dbf49a8b925e455e5a477ad24bfec2554a954"
+    },
+    "docs/images/identity.png": {
+      "bytes": 143478,
+      "sha256": "35ce00d302469346003584190f105a0d4ee9b159e09a1affb89dc97743ea35fa"
+    },
+    "docs/images/lldp.png": {
+      "bytes": 134113,
+      "sha256": "37a24836c0d99ba8492be47259f2ff388f66f7884636c0af749a364647006749"
+    },
+    "docs/images/management-vlan.png": {
+      "bytes": 131348,
+      "sha256": "a9344bc7c3ba5daff74866b6c247bc5f7d9f54979e560b5bdf36588c6460d4ae"
+    },
+    "docs/images/overview.png": {
+      "bytes": 155839,
+      "sha256": "6fe906ad10c36de5ab0fb398c02cd75c12f161325962a07e8e127ad3364bd023"
+    },
+    "docs/images/ports.png": {
+      "bytes": 142242,
+      "sha256": "c3e8e20ac59b63aadc75a8e4e062d6eef2f9dc80eeda03c3cbb24530d1458eb1"
+    },
+    "docs/images/sfp.png": {
+      "bytes": 142490,
+      "sha256": "3a5efcc52e591fb402a0e3e3b7ee9be9bef553535c85645f9ba27417fdc0ebec"
+    },
+    "docs/images/terminal.png": {
+      "bytes": 128154,
+      "sha256": "7c5ec9112a5d754ed2dd7e773783a93113788c2c0d8dbf269d967eda9468e441"
+    },
+    "docs/images/vlan-editor.png": {
+      "bytes": 143360,
+      "sha256": "6d4bf7712b2635cab1d11bf215a271f39ff0f34a61720e3f99fa578b80ed8a8b"
+    },
+    "docs/images/vlans-dark.png": {
+      "bytes": 138392,
+      "sha256": "4acc7c0f060ffa9956e48984c60262e25cafd8607dd5216549f83ffc8cf6ef16"
     },
     "firmware/console_native.c": {
       "bytes": 6907,
@@ -490,8 +530,8 @@
       "sha256": "e7c3f12c4eaeafc36d4ab13bb488e552a7e139357d5e2cbf74f6664682afbf8a"
     },
     "tools/package_developer_preview.py": {
-      "bytes": 7677,
-      "sha256": "03dae83d208da8aff2fc9e3cb1c471f7bdc998efd8605f2096515e1b3772aabc"
+      "bytes": 9086,
+      "sha256": "b579e8c6180d41de10a695f7741e8b817441c8d0f0f03482383425e9c3bda9f3"
     },
     "tools/prepare_github_repo.py": {
       "bytes": 3643,

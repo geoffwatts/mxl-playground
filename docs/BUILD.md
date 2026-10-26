@@ -63,6 +63,65 @@ packages; subsequent extension compilation runs with container networking off.
 The pinned toolchain and exact output hashes are part of this target profile;
 unexpected output is a stop condition, not a reason to relax admission.
 
+## Where to get factory firmware 2.0.0.4
+
+This build targets **XikeStor SKS3200-8E2X, non-PoE, V2.0.0.4**. It does
+not accept an arbitrary "latest" firmware or the similarly named `-P` model.
+
+Start at the official [XikeStor Download Center](https://www.xikestor.com/download-center/),
+then select **Switch → Smart Managed → SKS3200-8E2X → Firmware / Driver**.
+As checked on **26 October 2026**, this page lists versions through V2.0.0.3
+and directs owners to their seller or XikeStor support to obtain firmware;
+it does not provide a V2.0.0.4 binary link.
+
+The [older official download centre](https://seekswan.com/user/pages/download-center.html?type_id=88)
+still has a V2.0.0.4 catalogue record for this model. Its public catalogue API
+(`https://seekswan.com/index/DownloadFile/getDownloadFileByType`, POST
+`download_type_id=88`) returned entry **326**, file ID **4605**, version
+**V2.0.0.4**, dated **2026-10-18**, when rechecked on 26 October 2026.
+The older portal may require a CAPTCHA or be unavailable. A catalogue entry
+is evidence of the version, not a verified working binary download URL.
+
+If you cannot obtain it through the portal, ask the seller or
+[XikeStor support](https://www.xikestor.com/contact-us/)
+(`support@xikestor.com`) for this exact input:
+
+> Please supply the original non-PoE SKS3200-8E2X V2.0.0.4 firmware update,
+> dated 2026-10-18. The older official catalogue identifies it as entry 326,
+> file ID 4605, MD5 `01f2d96d10088761ece67dbf03e08d8d`.
+> Our reference file is named `wsp_mxl862xx_update_image_fca.bin` and is
+> 3,145,556 bytes. Please confirm the model and version before supplying it.
+
+Our baseline was supplied by the development unit's owner; its MD5 matches
+that official catalogue record. We have **not verified a currently working
+public direct download**. This repository does not mirror vendor firmware.
+Keep your acquired original privately alongside its checksums.
+
+| Check | Required factory input |
+| --- | --- |
+| Filename of reference input | `wsp_mxl862xx_update_image_fca.bin` |
+| Size | 3,145,556 bytes |
+| SHA-256 | `085ce44aeffe82b75676c5784b915ab80cfa0262a1ec5356a47832a45af07426` |
+| Vendor catalogue MD5 (identification only) | `01f2d96d10088761ece67dbf03e08d8d` |
+
+Save the file as `input/vendor-v2.bin`, then check it locally:
+
+```sh
+# macOS
+shasum -a 256 input/vendor-v2.bin
+# Linux
+sha256sum input/vendor-v2.bin
+```
+
+The SHA-256 must match exactly; a matching filename/version is insufficient.
+A firmware backup exported from a switch may use different packaging and is
+not automatically interchangeable with this factory update. Do not relax the
+builder's input checks to accommodate a different file.
+
+**The vendor prohibits ordinary V1 ↔ V2 cross-updates.** Obtaining this file
+does not migrate a V1 switch's flash layout. Read [MIGRATION.md](MIGRATION.md)
+for the separate experimental SPI migration and recovery requirements.
+
 ## User-supplied firmware inputs
 
 Supply the unmodified audited V2 update yourself. Its SHA-256 must be exactly
