@@ -179,6 +179,7 @@ a demonstrated automatic recovery guarantee.
 - [Experimental serial installer and serial-only WSP option](docs/SERIAL-INSTALLER.md)
 - [Recovery, factory defaults and factory firmware](docs/RECOVERY.md)
 - [Original V1 → factory V2 migration experiment](docs/MIGRATION.md)
+- [LAGs, LACP and grouped VLAN controls](docs/LAGS.md)
 - [Firmware page](docs/FIRMWARE-UPDATES.md), [management VLAN](docs/MANAGEMENT-VLAN.md)
   and [browser terminal](docs/TERMINAL.md)
 - [Release gates](docs/RELEASE-PLAN.md), [roadmap](docs/ROADMAP.md) and

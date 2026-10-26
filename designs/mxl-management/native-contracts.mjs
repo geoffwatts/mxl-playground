@@ -1,5 +1,6 @@
 // Native V2 request schemas. Browser equivalent of tools/live_backend.py.
 import {PORTS,on} from './live-model.mjs';
+import {validateLagVlan,validateLagSetup} from './lag.mjs';
 export function md5(text){
  const input=new TextEncoder().encode(text),size=Math.ceil((input.length+9)/64)*64,b=new Uint8Array(size),v=new DataView(b.buffer);
  b.set(input);b[input.length]=128;v.setUint32(size-8,input.length*8,true);v.setUint32(size-4,Math.floor(input.length/0x20000000),true);
@@ -22,6 +23,8 @@ const ports=(x,empty=false)=>{if(!Array.isArray(x)||(!empty&&!x.length)||new Set
 const ipv4=x=>{if(typeof x!=='string'||!/^\d+\.\d+\.\d+\.\d+$/.test(x)||x.split('.').some(p=>String(Number(p))!==p||Number(p)>255))throw Error('Invalid IPv4 address');return x;};
 const request=(route,body)=>({path:`/${route}.json`,method:'POST',body});
 export function nativePlan(action,a){
+ if(action==='lag'&&a._currentVlans!==undefined)validateLagSetup(a,a._currentVlans,a._currentPvid);
+ if(['vlan','port-defaults','pvid'].includes(action)&&a._currentLag!==undefined)validateLagVlan(action,a,a._currentLag);
  let requests=[],readback=null;const port=()=>int(a.port,1,10,'Port'),r=(route,body)=>requests.push(request(route,body));
  switch(action){
  case 'jumbo':requests.push({path:'/jumbo.json',method:'POST',encoding:'uint16le',body:{length:int(a.length,1518,10000,'Frame length')}});readback='jumbo';break;

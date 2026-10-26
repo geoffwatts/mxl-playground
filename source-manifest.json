@@ -6,8 +6,8 @@
   "captured_configuration_included": false,
   "files": {
     ".github/workflows/source-checks.yml": {
-      "bytes": 2260,
-      "sha256": "e968dcf5e81a437d4f993dbcd8bdec2932c2f9c445d30080bdbb4ae5d993dc82"
+      "bytes": 2279,
+      "sha256": "04d9a901119668aab14b47a6d66ad91d66f071a2b1e189c6df506cbbdc3dc710"
     },
     ".gitignore": {
       "bytes": 179,
@@ -18,8 +18,8 @@
       "sha256": "3921800b801e4f2b8de5fc1c1e5f2d90d055f76b3f9828965917e40946aaf90c"
     },
     "README.md": {
-      "bytes": 10418,
-      "sha256": "cb0a6495556e24a973870c91babc5612d149d29fc889820663a7d51bfcf22a95"
+      "bytes": 10473,
+      "sha256": "22541dab9df03812b01f8b14d971c5351f275baa9a391c86214f54bff85097a4"
     },
     "designs/mxl-management/LICENSE-RTLPlayground": {
       "bytes": 1087,
@@ -49,9 +49,13 @@
       "bytes": 1089,
       "sha256": "b8cb5ca25c430c993cf2c7edb453a380fc88318bb0680566e45b63c0b7206fc7"
     },
+    "designs/mxl-management/lag.mjs": {
+      "bytes": 3110,
+      "sha256": "13e687b72d6d1cdf2993623e945cbfd2c886449675e305130634d45736687424"
+    },
     "designs/mxl-management/live-app.mjs": {
-      "bytes": 56729,
-      "sha256": "e0ca1bd21b8a5308b17eeea7693deec95483092fe42ad92a0b5494d52d07a1a0"
+      "bytes": 60264,
+      "sha256": "5c5552bf5892148962653fc245ffff0e64aa4a15717eeaa77f6df0fa168c3c73"
     },
     "designs/mxl-management/live-dom.mjs": {
       "bytes": 1812,
@@ -66,12 +70,12 @@
       "sha256": "f73088891af008c8792dfdbfa2639e154aa864c2f329ad3d57143fd915c012a8"
     },
     "designs/mxl-management/live-vlans.mjs": {
-      "bytes": 6954,
-      "sha256": "7576b468308b84695128b7014660c03295d8310185ff43b092265e066cdb5487"
+      "bytes": 8426,
+      "sha256": "535bf0877685df00b6510feea945d337c32b7dcf8fd46272bf29f6b134e4ca3b"
     },
     "designs/mxl-management/live.css": {
-      "bytes": 10687,
-      "sha256": "737e331f186d9831b99ab5f3fd9d3797bbdb459c1658310f61bbcd5db64157c6"
+      "bytes": 10993,
+      "sha256": "6c5080a0cab6ebd5d86b6ac5f759c8bbff0e2162c85aadc42682c86172e5a131"
     },
     "designs/mxl-management/live.html": {
       "bytes": 2960,
@@ -86,12 +90,12 @@
       "sha256": "f423ee8e68447954c4d21cb279de8b6a604115a1cd3123500d4a613ed2531668"
     },
     "designs/mxl-management/native-api.mjs": {
-      "bytes": 15544,
-      "sha256": "a794d15337d2f8d48e87dd12b69f7f95c73e784fb18a5ebe6b3d34fdd16e4afd"
+      "bytes": 15866,
+      "sha256": "f0dfed1165147d95736fc61195c5b07b179a1d0cd11fdcbac94aca57eb7254ad"
     },
     "designs/mxl-management/native-contracts.mjs": {
-      "bytes": 15225,
-      "sha256": "09beea1dcf01636ba23a9d24aa2e083befd164ba047cc202b90ba912b981c62e"
+      "bytes": 15506,
+      "sha256": "726085021892e94f4453735edec504a29487202c7d8aa7e54c3196a1c79bdeff"
     },
     "designs/mxl-management/rtl-base.css": {
       "bytes": 9248,
@@ -149,6 +153,10 @@
       "bytes": 8283,
       "sha256": "1fdacc9ab9de6f7563f8e1d92c47037a2acad9b2876d16a8d7101e9d432867af"
     },
+    "docs/LAGS.md": {
+      "bytes": 3446,
+      "sha256": "ac85a4aa78f23af07fcb4c120e3293b9cee7e4de61a01a3a2770a3cea3bafb96"
+    },
     "docs/MANAGEMENT-VLAN.md": {
       "bytes": 4868,
       "sha256": "d7aa93316eb6b8d8f2aef3e688179337248f8b0f7b6d55d4482135506a906852"
@@ -174,8 +182,8 @@
       "sha256": "14b1ffd6b825b9c4df75e26e3376e612fc0ed995e93feacb5418f57ad00689f2"
     },
     "docs/ROADMAP.md": {
-      "bytes": 1792,
-      "sha256": "7c60d11d588c587fcf82f22d2763065a6ced17f5a9e91fe8631e362fdf8920d2"
+      "bytes": 1984,
+      "sha256": "2cb5df525d1f4695bacbe809be6b586b20bde3844c768f2bb5d6acd3cff4a86d"
     },
     "docs/SERIAL-INSTALLER.md": {
       "bytes": 7459,
@@ -377,6 +385,10 @@
       "bytes": 2484,
       "sha256": "97848df469031c5d63debc6d1b6f17616ce4e6e078afc1206d9272e6e45986ae"
     },
+    "tests/lag.test.mjs": {
+      "bytes": 5046,
+      "sha256": "dbe6c4424fce6bf49f6c15774115a0035f23422af3b39a4ccbd251a0e5c5130d"
+    },
     "tests/live-session.test.mjs": {
       "bytes": 1685,
       "sha256": "dced026dcfafc48cc4050ff2f3d639d141a70026fed22e3a7282d416fe07cce8"
@@ -514,8 +526,8 @@
       "sha256": "6822f2cfbbb65074e154ea34975bbe30dbcdb5c8da2fa4b3908196fdd5db7826"
     },
     "tools/live_backend.py": {
-      "bytes": 25529,
-      "sha256": "a5d63f3f74ad4a0179e8fcd2776d2eab6bf3ba6ad85e07b65723686573a8fd22"
+      "bytes": 29299,
+      "sha256": "28b9e5aef85b8d0d2e17c15b7a8baecc851d0e2b1ac4cb58bb4aa7eb262dd3ef"
     },
     "tools/mxl_uart_console.py": {
       "bytes": 2087,
@@ -534,8 +546,8 @@
       "sha256": "e7c3f12c4eaeafc36d4ab13bb488e552a7e139357d5e2cbf74f6664682afbf8a"
     },
     "tools/package_developer_preview.py": {
-      "bytes": 9145,
-      "sha256": "5cbbae56de857b3c92d11c46dfa07e212591d75851c2f93eaaeb668c4fa96aae"
+      "bytes": 9294,
+      "sha256": "0762c5e2ea3e6840ae917a815e464fa702289a138630a143bdb2ee1dfa2c2d17"
     },
     "tools/prepare_github_repo.py": {
       "bytes": 3643,
@@ -578,8 +590,8 @@
       "sha256": "a27dc44c98e762b5683a30c9f374deb77a5560c8cf6a85c52b91f8a35728e7c4"
     },
     "designs/mxl-management/native-metadata.mjs": {
-      "bytes": 3947,
-      "sha256": "2d6678dbbbf4c0859e05eada6dd2b3834dbb56fec3de48fcf706e21e6531dd0b",
+      "bytes": 3953,
+      "sha256": "69f0573b7d93b849866ac4df28aeacc19109e111a5d2d3d57748f19fa095146a",
       "source": "generated public contracts; vendor CLI help omitted"
     }
   }

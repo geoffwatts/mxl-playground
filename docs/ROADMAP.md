@@ -5,6 +5,8 @@ release. One installed development unit supplies the current hardware evidence.
 
 - [x] On-device UI, native web updates and clean user-supplied-firmware build.
 - [x] Identity, jumbo, SFP diagnostics and browser/UART shared terminal.
+- [x] LAG/LACP group summary and editor, grouped VLAN/PVID controls and current-state validation.
+- [ ] LACP peer negotiation, failure/recovery, forwarding distribution and persistence tests.
 - [x] Durable management-VLAN backend and UI with timed rollback; VLAN-1
       confirmation/cancellation and warm-start validation.
 - [x] Read-only UART boot-area/partition admission against an own-device backup.

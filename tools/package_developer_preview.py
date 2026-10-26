@@ -51,6 +51,7 @@ FILES['SERIAL-INSTALLER.md']='docs/SERIAL-INSTALLER.md'
 FILES.update({p:p for p in ['tools/check_source_tree.py','.github/workflows/source-checks.yml']})
 FILES['GITHUB.md']='docs/GITHUB.md'
 FILES['tests/test_migration.py']='tests/test_migration.py'
+FILES.update({'designs/mxl-management/lag.mjs':'designs/mxl-management/lag.mjs','tests/lag.test.mjs':'tests/lag.test.mjs','LAGS.md':'docs/LAGS.md'})
 # Keep GitHub's root focused on README and source directories.
 FILES={('docs/'+target if target.endswith('.md') and target!='README.md' else target):source
        for target,source in FILES.items()}

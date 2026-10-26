@@ -34,8 +34,8 @@ READS = {key: Read('/' + path + '.json', method, stream) for key, path, method, 
 FEATURES = [
     ('dash','Overview',['status','ports','statistics','lldp']),
     ('ports','Ports',['ports']),('statistics','Statistics',['statistics']),
-    ('vlans','VLANs & PVID',['vlans','pvid']),('stp','Spanning tree',['stp']),
-    ('loop','Loop protection',['loop','loop-status']),('lag','Aggregation',['lag','lag-status']),
+    ('vlans','VLANs & PVID',['vlans','pvid','lag']),('stp','Spanning tree',['stp']),
+    ('loop','Loop protection',['loop','loop-status']),('lag','LAGs & LACP',['lag','lag-status']),
     ('mirror','Port mirroring',['mirror']),('mac','MAC addresses',['mac-dynamic','mac-static']),
     ('igmp','Multicast',['igmp','igmp-router','igmp-querier','igmp-groups']),
     ('lldp','LLDP & neighbors',['lldp','neighbors']),('sfp','SFP modules',['ports']),('storm','Storm control',['storm']),
@@ -96,7 +96,67 @@ def settings_identity(data):
 
 # An operation becomes available only after its request contract is recovered.
 # Lists returned here are sent sequentially. Failures never trigger automatic retries.
+def validate_lag_vlan(action, args, config):
+    if not isinstance(config, dict):
+        raise ValueError('Read aggregation configuration before editing VLANs')
+    groups = {}
+    for port in range(1, 11):
+        row = config.get(f'Port_{port}', {})
+        try:
+            mode = int(row[f'portTypeId_{port}'])
+            group = int(row[f'Port_{port}_grpInd']) if mode else 0
+        except (KeyError, TypeError, ValueError):
+            raise ValueError('Incomplete aggregation configuration; refresh before applying')
+        if mode not in (0, 1, 2) or not 0 <= group <= 15:
+            raise ValueError('Invalid aggregation configuration')
+        if mode:
+            item = groups.setdefault(group, {'mode': mode, 'ports': []})
+            if item['mode'] != mode:
+                raise ValueError('Aggregation group members use different modes')
+            item['ports'].append(port)
+    for group, item in groups.items():
+        pp = item['ports']
+        if len(pp) < 2:
+            raise ValueError('Each aggregation group needs at least two ports')
+        if action == 'vlan':
+            states = args.get('states', [])
+            if len(states) != 10 or len({states[p-1] for p in pp}) != 1:
+                raise ValueError(f'LAG {group} members must have the same VLAN membership')
+            selected = args.get('pvidPorts', [])
+            if any(p in selected for p in pp) and not all(p in selected for p in pp):
+                raise ValueError(f'Assign PVID to every member of LAG {group}')
+        elif action == 'port-defaults':
+            if any(len({args.get(f'{key}_{p}') for p in pp}) != 1 for key in ('pvid', 'frame')):
+                raise ValueError(f'LAG {group} members must have the same PVID and accepted frames')
+        elif action == 'pvid':
+            selected = args.get('ports', [])
+            if any(p in selected for p in pp) and not all(p in selected for p in pp):
+                raise ValueError(f'Select every member of LAG {group} when changing PVID')
+
+
+def validate_lag_setup(args, vlans, pvid):
+    proposed = {f'Port_{p}': {f'portTypeId_{p}': args.get(f'mode_{p}'),
+                            f'Port_{p}_grpInd': args.get(f'group_{p}')}
+                for p in range(1, 11)}
+    records = [v for v in vlans if isinstance(v, dict) and 'vlan_id' in v] if isinstance(vlans, list) else []
+    if not records or any(not isinstance(v.get('port_states'), list) or len(v['port_states']) != 10 for v in records):
+        raise ValueError('Read the complete VLAN table before changing aggregation')
+    defaults = {}
+    for p in range(1, 11):
+        row = (pvid or {}).get(f'Port_{p}', {})
+        if not isinstance(row.get('PVID'), int) or not isinstance(row.get('Frame_Type'), int):
+            raise ValueError('Read current PVID and frame settings before changing aggregation')
+        defaults.update({f'pvid_{p}': row['PVID'], f'frame_{p}': row['Frame_Type']})
+    validate_lag_vlan('port-defaults', defaults, proposed)
+    for record in records:
+        validate_lag_vlan('vlan', {'states': record['port_states']}, proposed)
+
+
 def plan(action, a):
+    if action == 'lag' and '_currentVlans' in a:
+        validate_lag_setup(a, a['_currentVlans'], a.get('_currentPvid'))
+    if action in ('vlan', 'port-defaults', 'pvid') and '_currentLag' in a:
+        validate_lag_vlan(action, a, a['_currentLag'])
     port=lambda:integer(a.get('port'),1,10,'Port')
     request=lambda route, body: {'path':'/'+route+'.json','method':'POST','body':body}
     result=[];readback=None
@@ -307,6 +367,11 @@ class Backend:
             if action=='eee':args={**args,'_current':self.read('eee')['data']}
             if action=='port-defaults':args={**args,'_current':self.read('pvid')['data']}
             if action=='vlan' and args.get('pvidPorts'):args={**args,'_currentPvid':self.read('pvid')['data']}
+            if action in ('vlan', 'port-defaults', 'pvid'):args={**args,'_currentLag':self.read('lag')['data']}
+            if action == 'lag':
+                vlans=self.read('vlans')
+                if vlans.get('stream_complete') is False:raise ValueError('Read the complete VLAN table before changing aggregation')
+                args={**args,'_currentVlans':vlans['data'],'_currentPvid':self.read('pvid')['data']}
             requests,readback=plan(action,args)
             completed=[]
             try:

@@ -33,7 +33,7 @@ jobs:
           python3 -m unittest discover -s tests -p 'test_publication.py'
           python3 -m unittest discover -s tests -p 'test_migration.py'
       - name: Frontend source tests
-        run: node --test tests/sfp.test.mjs tests/inventory.test.mjs tests/qos.test.mjs tests/live-session.test.mjs tests/console.test.mjs
+        run: node --test tests/sfp.test.mjs tests/inventory.test.mjs tests/qos.test.mjs tests/live-session.test.mjs tests/console.test.mjs tests/lag.test.mjs
       - name: Reproduce UI and instruction-plan extensions without vendor files
         run: |
           python3 tools/build_native_ui.py --without-cli --output-dir artifacts/ui
