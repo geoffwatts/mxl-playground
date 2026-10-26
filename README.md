@@ -44,8 +44,10 @@ this SPI migration procedure.
 
 **[Read the V1 → V2 migration guide](docs/MIGRATION.md)** for the layout changes,
 backup/build/programming steps and recovery requirements. The migration worked
-on our switch; the current builder is still restricted to its original backup,
-so it is not yet a general installer for other owners' units. A switch already
+on our switch. The offline builder now accepts other owners' backups with the
+same audited V1.0.0.6 boot/firmware profile, while preserving their own board data
+and settings. Unknown firmware, layouts and slot states are rejected; another
+unit's hardware migration has not yet been tested. A switch already
 on the supported V2 layout can proceed to the separate serial bootstrap and
 web installation below.
 

@@ -1,11 +1,12 @@
 # GitHub source preview
 
-The first repository is `geoffwatts/mxl-playground`, initially private for review.
+The repository is [geoffwatts/mxl-playground](https://github.com/geoffwatts/mxl-playground),
+opened as an experimental public source preview after private review.
 It contains the source allowlist, not the complete research workspace. There
 is no firmware release or tag yet. Newly authored code uses MIT; upstream notices
 remain intact.
 
-## Before making it public
+## Publication checks
 
 1. Check README.md, BUILD.md, SERIAL-INSTALLER.md and RECOVERY.md as a new owner.
    Preserve the programmer requirement and experimental installation limits.
@@ -28,9 +29,8 @@ Make changes in the source workspace, regenerate the allowlisted archive and
 stage it into a new directory using REVIEW.md. Review the diff against the Git
 repository before committing. The committed source manifest must be regenerated
 after source changes; `python3 tools/check_source_tree.py --git` checks exact
-tracked-file membership as well as hashes. Generated images and captures remain
-private and ignored. Never recursively copy or commit the research directory.
+tracked-file membership as well as hashes. Generated firmware and raw device captures remain
+private and ignored; only reviewed, anonymised README screenshots are included. Never recursively copy or commit the research directory.
 
 A source commit is separate from a firmware release. Do not upload locally built
-WSP/GPHY, SPI backups or binary deltas as GitHub assets. A later public source
-preview can use this same private repository after an explicit visibility change.
+WSP/GPHY, SPI backups or binary deltas as GitHub assets. The public source preview is not a supported firmware release.

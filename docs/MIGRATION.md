@@ -1,9 +1,11 @@
 # Original 1.x to factory 2.0.0.4: the demonstrated migration
 
 This describes the single GoodTop ZX310S-8T2XS experiment behind MxL Playground.
-It is not yet an installer for another owner's switch. The current migration
-builder deliberately admits only the original development backup. An independent
-unit, recovery rehearsal and more configuration/forwarding tests remain open.
+The offline builder now accepts other owners' backups when their boot area,
+V1 partition map and all four firmware banks match the audited V1.0.0.6 profile.
+Their own persistent data is preserved. This remains a one-unit-tested experiment:
+an independent unit, recovery rehearsal and more configuration/forwarding tests
+remain open.
 
 The migration gets the switch onto the **factory** V2 baseline first. Installing
 our replacement UI is a separate serial-bootstrap/custom-WSP operation described
@@ -74,20 +76,37 @@ firmware export omits boot and persistent areas and cannot replace this backup.
 Matching reads establish repeatability, not a proven ability to restore the chip.
 A full original-backup restoration has not yet been rehearsed on this project.
 
-## Build the candidate offline: current admission limit
+## Build the candidate offline: supported source profile
 
 The existing tool is `tools/build_v2_migration_candidate.py`. It verifies the exact
 factory V2 input, both component signatures, map consistency, component/trailer
 bounds and preservation of relocated data. It requires the separately acquired
 76-byte secondary public-key record. That record is not a private signing key.
 
-Its current admission guard pins **the entire original development-unit backup**.
-Consequently, another owner's backup will be rejected even if only MAC addresses
-or settings differ. Do not substitute our backup, bypass the guard, or copy our
-full candidate. A general installer needs audited immutable-region checks and
-per-device preservation checks before that restriction can change.
+The `goodtop-zx310s-v1.0.0.6-8mib` source profile requires:
 
-For reproducing the exact original experiment only:
+- Exactly 8,388,608 bytes and the audited ten-area V1 partition map.
+- The audited complete boot area and each firmware bank, checked by separate
+  SHA-256 hashes. These checks include boot tags, unused bank padding and slot
+  state, not just a reported version string.
+- An erased (`FF`) unpartitioned tail, so unknown data cannot silently be lost.
+- The exact V2 factory update and valid WSP/GPHY signatures with the supplied
+  public-key record and the source backup's GPHY key.
+
+**The whole backup no longer needs to match ours.** Areas 5–9 may contain the
+owner's own board/configuration, NVS and flashless data. The builder relocates
+each area's bytes, checks preservation by hash, and verifies that any added
+space is erased. The output manifest records those checks and the input hash.
+No MAC address or saved settings from the development switch are substituted.
+
+A different bootloader, patched boot record, firmware bank or slot state is
+rejected, even if the UI says 1.0.0.6. Another V1 version or another model needs
+its own audited source profile. Do not bypass these checks or substitute another
+owner's full backup. Matching regions establish software equivalence, not proof
+of identical hardware or compatibility of every preserved setting.
+
+Install the dependencies in [BUILD.md](BUILD.md), acquire the public-key record
+there, and run:
 
 ```sh
 python3 tools/build_v2_migration_candidate.py OWN_ORIGINAL_BACKUP.bin \

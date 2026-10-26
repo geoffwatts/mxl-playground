@@ -21,6 +21,8 @@ jobs:
           node-version: '22'
       - name: Verify publication manifest and tracked files
         run: python3 tools/check_source_tree.py --git
+      - name: Install pinned firmware-verification dependency
+        run: python3 -m pip install -r requirements-build.txt
       - name: Python admission, UART, uploader and publication tests
         run: |
           python3 -m unittest discover -s tests -p 'test_public_key.py'
@@ -29,6 +31,7 @@ jobs:
           python3 -m unittest discover -s tests -p 'test_upload_native_ui.py'
           python3 -m unittest discover -s tests -p 'test_clean_build.py'
           python3 -m unittest discover -s tests -p 'test_publication.py'
+          python3 -m unittest discover -s tests -p 'test_migration.py'
       - name: Frontend source tests
         run: node --test tests/sfp.test.mjs tests/inventory.test.mjs tests/qos.test.mjs tests/live-session.test.mjs tests/console.test.mjs
       - name: Reproduce UI and instruction-plan extensions without vendor files

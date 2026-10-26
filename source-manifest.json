@@ -6,8 +6,8 @@
   "captured_configuration_included": false,
   "files": {
     ".github/workflows/source-checks.yml": {
-      "bytes": 2065,
-      "sha256": "cddeab35f383d2db8a8aa8bcd5b2319e704588490a399448b639cae71144a407"
+      "bytes": 2260,
+      "sha256": "e968dcf5e81a437d4f993dbcd8bdec2932c2f9c445d30080bdbb4ae5d993dc82"
     },
     ".gitignore": {
       "bytes": 179,
@@ -18,8 +18,8 @@
       "sha256": "3921800b801e4f2b8de5fc1c1e5f2d90d055f76b3f9828965917e40946aaf90c"
     },
     "README.md": {
-      "bytes": 10269,
-      "sha256": "bf30caf37edc28269d37b8704e115ddeac6515a3a4b8ad28f4c8ab1db7fc28dc"
+      "bytes": 10418,
+      "sha256": "cb0a6495556e24a973870c91babc5612d149d29fc889820663a7d51bfcf22a95"
     },
     "designs/mxl-management/LICENSE-RTLPlayground": {
       "bytes": 1087,
@@ -142,8 +142,8 @@
       "sha256": "51f54f5507611d831c18e2d1da1864860c1490b4a5a32af18ed1f943b4164be4"
     },
     "docs/GITHUB.md": {
-      "bytes": 2045,
-      "sha256": "c174766f3f7d4525c09ca359a4e81dacd915162c31f6c25d89bb0b86c5dbefb3"
+      "bytes": 2151,
+      "sha256": "99b075b3e75713e9ddfd6529dbae01bdeb57aafbf509fa5e74e9091cf5d81410"
     },
     "docs/INSTALL.md": {
       "bytes": 8283,
@@ -154,8 +154,8 @@
       "sha256": "d7aa93316eb6b8d8f2aef3e688179337248f8b0f7b6d55d4482135506a906852"
     },
     "docs/MIGRATION.md": {
-      "bytes": 7587,
-      "sha256": "9b0a112c3e43431cdaadb60418914e37e282dfa99d5589d54ba71c7971d8020d"
+      "bytes": 8662,
+      "sha256": "c862b000f1678ff1c5d23c61c5d539bf9490ad2728d7c4b97b7e253d301196d7"
     },
     "docs/NATIVE-WRITES.md": {
       "bytes": 3690,
@@ -166,16 +166,16 @@
       "sha256": "7bdeaa7ee889200437560f2380917dc87705a753b971483f27e9c72450681962"
     },
     "docs/RELEASE-PLAN.md": {
-      "bytes": 5035,
-      "sha256": "189a7b49c5217b09db8c0e6a79befa6c868f36b6cb797d6dd3982675c798ad9b"
+      "bytes": 5108,
+      "sha256": "04fb7c8470d21e896cba2c8bf03a3f977e85158932a84366dc4268c1a78cb538"
     },
     "docs/REVIEW.md": {
-      "bytes": 4625,
-      "sha256": "334cc898827481093ebc0328b6f792a6db2b202c62f724c5b80c29622c3fa97a"
+      "bytes": 4667,
+      "sha256": "14b1ffd6b825b9c4df75e26e3376e612fc0ed995e93feacb5418f57ad00689f2"
     },
     "docs/ROADMAP.md": {
-      "bytes": 1705,
-      "sha256": "cf44b948cde2647c01766e5058f7885fda2acacf9e4d73a9eb83ac9310fe7438"
+      "bytes": 1792,
+      "sha256": "7c60d11d588c587fcf82f22d2763065a6ced17f5a9e91fe8631e362fdf8920d2"
     },
     "docs/SERIAL-INSTALLER.md": {
       "bytes": 7459,
@@ -401,6 +401,10 @@
       "bytes": 1088,
       "sha256": "2692a7fe72a46c2f10f3f5ce657ebff4046291bca43871b7aac73e3a33af6df5"
     },
+    "tests/test_migration.py": {
+      "bytes": 5140,
+      "sha256": "0c58f69d837867ee23ed8ded34cef94c4ddcac379d7b8279d509d0b14a37c1e5"
+    },
     "tests/test_public_key.py": {
       "bytes": 1528,
       "sha256": "30df5c2dab04da992f7387ec40b51d4ea8e2d40f2da6b35725c0084cfbed9339"
@@ -478,8 +482,8 @@
       "sha256": "f524fb8be70fc3a66f790df6b70c7d7a180440b243df76c21a64faabbce92c31"
     },
     "tools/build_v2_migration_candidate.py": {
-      "bytes": 8555,
-      "sha256": "6e7643d2b4f878c6e218bd7eea98881e2e948560156ffecc8d2805ecd92fb0b1"
+      "bytes": 11462,
+      "sha256": "9c702a3606bb4fd3dd54fcd33d3293531b704c8ded230c0d2b10a58644b2abd9"
     },
     "tools/capture_readonly.py": {
       "bytes": 3997,
@@ -530,8 +534,8 @@
       "sha256": "e7c3f12c4eaeafc36d4ab13bb488e552a7e139357d5e2cbf74f6664682afbf8a"
     },
     "tools/package_developer_preview.py": {
-      "bytes": 9086,
-      "sha256": "b579e8c6180d41de10a695f7741e8b817441c8d0f0f03482383425e9c3bda9f3"
+      "bytes": 9145,
+      "sha256": "5cbbae56de857b3c92d11c46dfa07e212591d75851c2f93eaaeb668c4fa96aae"
     },
     "tools/prepare_github_repo.py": {
       "bytes": 3643,

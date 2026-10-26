@@ -67,8 +67,9 @@ remote repository or publishing it; neither command commits or pushes files.
 
 ## Publication status and claims
 
-The archive is prepared locally for private GitHub source review. No public
-release has been published; see [GITHUB.md](GITHUB.md) for the publication path.
+The allowlisted source is being published as an experimental public GitHub
+preview after private review. No firmware release has been published; see
+[GITHUB.md](GITHUB.md) for the publication scope.
 Its source-only build has been reproduced in a fresh directory with externally
 supplied inputs; repeated builds were byte-identical. It is suitable for a
 research/developer source preview, with the experimental installation and

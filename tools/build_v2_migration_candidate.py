@@ -4,7 +4,8 @@
 Uses V2's compiled default map, not a guessed allocation. Keeps boot code,
 board data and NVS bytes; relocates areas and writes authenticated V2 payloads.
 The owner booted this exact candidate; broad settings/recovery validation remains
-incomplete. The exact whole-source hash intentionally excludes other units.
+incomplete. Other units are admitted only when boot/firmware regions match the
+audited V1 profile; their own persistent areas are preserved byte-for-byte.
 """
 import argparse
 import hashlib
@@ -17,7 +18,23 @@ from pathlib import Path
 from spi_layout import MAGIC, inspect, parse_tags
 from verify_firmware_signatures import verify_component
 
-SOURCE_SHA = '5821b39c880c6773adbded270e06121748c428109ed447291f22061b2cce9346'
+SOURCE_PROFILE = 'goodtop-zx310s-v1.0.0.6-8mib'
+# Complete boot and firmware banks, including their slot state. These hashes
+# contain no vendor bytes or device configuration. Unknown bank states fail closed.
+SOURCE_REGION_SHA = {
+    0: '3732ca5397eb46c896b3fc0111df1b15c7285ba74d5a4a5c5db182bc38efd0bd',
+    1: 'c8d24c70e4974f6d5cb3c62c686f6a4596a2bde52f620adba089b92d0636f0b9',
+    2: '7097b8a03cecef065c4970c93a501b69cab64ea7b1fd75b90545d402d79f27c8',
+    3: '64d67024ce97a43d43471883f16f332155b13b85d185dd65d9e7b1c2742448e0',
+    4: '545d646451f0c517b711dd7cc7712f2e4519cc71d371c0b9ada1bb7bd40695b4',
+}
+SOURCE_MAP = {ident: {'id': ident, 'offset': offset, 'size': size}
+              for ident, offset, size in [
+                  (0, 0, 0xa000), (1, 0xa000, 0x240000),
+                  (2, 0x24a000, 0x29000), (3, 0x273000, 0x240000),
+                  (4, 0x4b3000, 0x29000), (5, 0x4dc000, 0x4000),
+                  (6, 0x4e0000, 0x10000), (7, 0x4f0000, 0x40000),
+                  (8, 0x530000, 0x80000), (9, 0x5b0000, 0x80000)]}
 V2_SHA = '085ce44aeffe82b75676c5784b915ab80cfa0262a1ec5356a47832a45af07426'
 
 
@@ -49,15 +66,42 @@ def compiled_map(component):
     return found[0]
 
 
-def build(source, update, secondary_tag):
-    if sha(source) != SOURCE_SHA or sha(update) != V2_SHA:
-        raise ValueError('Only the audited source SPI and V2.0.0.4 update are supported')
+def validate_source(source):
+    """Admit matching V1 firmware with arbitrary owner data in areas 5–9.
+
+    Slot flags and boot tags are deliberately pinned too: unknown update state,
+    prior patches, board setup or firmware require a separately audited profile.
+    """
+    if len(source) != 0x800000:
+        raise ValueError('Expected exactly 8 MiB of SPI main-array data')
     tags = parse_tags(source)
-    table = next(t for t in tags if t['tag'] == '0xa700')
+    tables = [t for t in tags if t['tag'] == '0xa700']
+    if len(tables) != 1 or tables[0]['length'] != 120:
+        raise ValueError('Expected one ten-area V1 partition table')
+    table = tables[0]
     old = {}
-    for off in range(table['payload_offset'], table['payload_offset']+table['length'], 12):
+    for off in range(table['payload_offset'], table['payload_offset']+120, 12):
         ident, start, size = struct.unpack_from('>III', source, off)
+        if ident in old:
+            raise ValueError('Duplicate source partition ID')
         old[ident] = {'id': ident, 'offset': start, 'size': size}
+    if old != SOURCE_MAP:
+        raise ValueError('Unsupported source partition layout')
+    for ident, expected in SOURCE_REGION_SHA.items():
+        area = old[ident]
+        if sha(source[area['offset']:area['offset']+area['size']]) != expected:
+            raise ValueError(f'Unsupported source boot/firmware region {ident}; '
+                             'requires audited V1.0.0.6 profile including slot state')
+    tail_start = old[9]['offset'] + old[9]['size']
+    if source[tail_start:] != b'\xff' * (len(source)-tail_start):
+        raise ValueError('Unrecognised data outside source partitions; refusing data loss')
+    return tags, table, old
+
+
+def build(source, update, secondary_tag):
+    if sha(update) != V2_SHA:
+        raise ValueError('Only the audited V2.0.0.4 update is supported')
+    tags, table, old = validate_source(source)
     magic, ws, wc, gs, gc = struct.unpack_from('<5I', update)
     if magic != 0xf48bf48b or len(update) != 20+ws+gs:
         raise ValueError('Invalid update container')
@@ -114,11 +158,22 @@ def build(source, update, secondary_tag):
         out[start+area['size']-32:start+area['size']] = trailer
         if not verify_component(out[start:start+len(component)], key)['signature_valid']:
             raise ValueError('Relocated component no longer authenticates')
+    for item in copied:
+        start, length = item['new_offset'], item['copied_size']
+        body = out[start:start+length]
+        if sha(body) != item['sha256']:
+            raise ValueError('Relocated owner data failed preservation check')
+        if out[start+length:start+item['new_size']] != b'\xff' * (item['new_size']-length):
+            raise ValueError('Persistent-area extension is not erased')
+        item['byte_preservation_verified'] = True
     expected_boot = bytearray(source[:old[0]['size']])
     expected_boot[table['payload_offset']:table['payload_offset']+len(payload)] = payload
     if out[:old[0]['size']] != expected_boot or out[0x400:0x7000] != source[0x400:0x7000]:
         raise ValueError('Unexpected boot-code change')
     manifest = {'status': 'EXPERIMENTAL OFFLINE CANDIDATE; NOT BOOT-TESTED',
+        'source_profile': SOURCE_PROFILE,
+        'source_region_sha256': dict(SOURCE_REGION_SHA),
+        'owner_data_preservation_verified': True,
         'source_sha256': sha(source), 'update_sha256': sha(update), 'candidate_sha256': sha(out),
         'candidate_size': len(out), 'compiled_v2_map_offset': map_off,
         'map': new_rows, 'preserved_areas': copied, 'signatures': signatures,

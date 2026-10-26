@@ -1,8 +1,8 @@
 # MxL Playground release scope
 
 Owner direction, 25 October 2026: use **MxL Playground** as the project name and
-`mxl-playground` as the intended repository name. No public repository has been
-created or renamed yet.
+`mxl-playground` as the repository name. The repository is being opened as an
+experimental source preview; no firmware release or tag is provided.
 
 ## One supported firmware baseline first
 
@@ -47,7 +47,7 @@ upload/boot remain open. It never reverses the patch or forces a reboot.
 The read-only serial preflight is now implemented and exercised on the development
 unit. It compares the entire boot area against an own-device V2 backup, pins the
 boot executable and checks both partition maps. The separate MIGRATION.md guide
-documents the original 1.x experiment and its whole-backup admission restriction.
+documents the original 1.x experiment and the supported immutable-region source profile.
 The coordinator builds on that preflight; its initial stock-to-custom hardware
 transition remains unvalidated.
 
@@ -65,13 +65,13 @@ boot-record reversal as part of update or restoration. Pin the factory image
 and verify its management/forwarding behavior after reboot. Restoring the vendor
 WSP/GPHY does not restore the original partition layout.
 
-The current migration builder pins the development unit's entire original SPI
-hash. It therefore intentionally rejects another owner's backup, including one
-with different MAC/settings bytes. A public migration tool needs independently
-audited checks of immutable code/layout regions while preserving that owner's
-variable board/NVS data. Do not remove the whole-image guard without replacing
-it with those checks. The migration how-to should distinguish a documented
-one-unit experiment from a supported installer.
+The migration builder admits other owners' backups with the audited V1.0.0.6
+boot area, partition map and complete firmware banks. Per-region hashes retain
+strict admission while allowing different owner data in areas 5–9. Relocation
+and erased-extension checks verify preservation; unknown non-erased tail data is
+rejected. Synthetic tests cover different owner data and rejected source regions;
+local tests with the real factory image preserve the original candidate hash.
+Independent hardware migration and full recovery remain open.
 
 The first publication should contain source, build/patch tools and the how-to,
 with the vendor image supplied separately. No device-specific full SPI image or

@@ -19,7 +19,8 @@ release. One installed development unit supplies the current hardware evidence.
 - [ ] Linked optics, maximum-MTU forwarding and sustained traffic tests.
 - [ ] Rejected-image behavior and full own-device SPI recovery rehearsal.
 - [ ] Independent installation on a second positively identified unit.
-- [ ] Final source/attribution review and public GitHub publication.
+- [x] Source/attribution review for experimental public GitHub source preview.
+- [x] Per-region V1 migration admission with owner-data preservation checks.
 
 An SSH server and additional vendors/models are later work. The SNTP/STP startup
 timing investigation is deferred. See RELEASE-PLAN.md for the three installation
