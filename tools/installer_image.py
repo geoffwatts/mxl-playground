@@ -5,6 +5,8 @@ import zlib
 from build_dma_trace_candidate import jump, limm
 from build_dns_guard_candidate import GUARD, PATCHED_CALL
 from prepare_native_base import prepare
+from wsp_profile import load as load_wsp_profile
+from build_native_ui_firmware import LLDP_SHA
 from upload_native_ui import expected_ui_digest
 
 WSP_SIZE = 0x2d6000
@@ -50,7 +52,15 @@ def validate_custom(image, vendor, expected=None, allow_development=False):
     _,factory_gphy = components(vendor)
     if gphy != factory_gphy:
         raise ValueError('GPHY differs from audited factory component')
-    digest = canonical(wsp)
+    profile,_=load_wsp_profile();address,length=profile['lldp_region'];offset=address-profile['wsp_base'];hook=profile['lldp_hook']
+    has_lldp=wsp[offset:offset+length]!=b'\xff'*length
+    compared=bytearray(wsp)
+    if has_lldp:
+        if sha(wsp[offset:offset+length])!=LLDP_SHA:raise ValueError('Unexpected LLDP extension')
+        receive=struct.unpack_from('<I',wsp,offset+0x18)[0]
+        if wsp[hook['offset']:hook['offset']+8]!=bytes.fromhex('2220800f')+limm(receive):raise ValueError('Unexpected LLDP receive hook')
+        compared[hook['offset']:hook['offset']+8]=bytes.fromhex(hook['expected'])
+    digest = canonical(compared)
     if digest not in CANONICAL or (not allow_development and digest != canonical(reference)):
         raise ValueError('WSP differs outside admitted patch areas / clean build required')
     if wsp[0x600:0x66c] != reference[0x600:0x66c] or wsp[0xf170c:0xf1778] != reference[0xf170c:0xf1778]:
@@ -59,7 +69,11 @@ def validate_custom(image, vendor, expected=None, allow_development=False):
     size = (struct.unpack_from('<H',wsp,0x15f72)[0]<<16)|struct.unpack_from('<H',wsp,0x15f74)[0]
     if size > 0x46000:
         raise ValueError('UI overlaps terminal window')
-    if sha(wsp[0x2b0000:0x2b4000]) != CONSOLE_SHA:
+    console=bytearray(wsp[0x2b0000:0x2b4000])
+    if has_lldp:
+        if console[12:20]!=jump(address):raise ValueError('Unexpected LLDP registration chain')
+        console[12:20]=jump(profile['symbols']['registration_continue'])
+    if sha(console) != CONSOLE_SHA:
         raise ValueError('Expected audited terminal extension')
     runtime = bytearray(wsp[0x2c0000:0x2c7000])
     if runtime[0x300c:0x3014] != jump(0x402b0000) or runtime[0x6f00:0x6f00+len(GUARD)] != GUARD:
@@ -86,7 +100,7 @@ def validate_custom(image, vendor, expected=None, allow_development=False):
     if wsp[-32:-16] != b'\xff'*16:
         raise ValueError('Selected update must have cleared slot-local metadata')
     return {'sha256':sha(image),'ui_sha256':ui_sha,'clean_build':digest==canonical(reference),
-            'DMA_relocation_verified':True,'native_extensions_verified':True,'GPHY_unchanged':True}
+            'lldp_neighbour_cache':has_lldp,'DMA_relocation_verified':True,'native_extensions_verified':True,'GPHY_unchanged':True}
 
 
 def validate_running(image, vendor, record):

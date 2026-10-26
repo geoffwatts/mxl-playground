@@ -64,7 +64,8 @@ web installation below.
   expandable xterm.js pane, behind an explicit flash/RAM warning.
 - **Management that fits the job.** Management-VLAN controls with timed
   rollback, jumbo-frame controls, LLDP, STP, aggregation, mirroring, multicast,
-  QoS, firmware export and checked web updates.
+  QoS, firmware export and checked web updates. LLDP retains up to 16 neighbours
+  on the switch, including multiple neighbours on one port.
 - **Local builds from your own firmware.** Supply the exact factory image;
   the patcher verifies it and builds your custom update locally. Vendor WSP,
   GPHY and bootloader binaries are not bundled with this project.
@@ -182,7 +183,8 @@ a demonstrated automatic recovery guarantee.
 - [Original V1 → factory V2 migration experiment](docs/MIGRATION.md)
 - [LAGs, LACP and grouped VLAN controls](docs/LAGS.md)
 - [Firmware page](docs/FIRMWARE-UPDATES.md), [management VLAN](docs/MANAGEMENT-VLAN.md)
-  and [browser terminal](docs/TERMINAL.md)
+  and [browser terminal](docs/TERMINAL.md), [LLDP neighbours](docs/LLDP.md)
+  and [WSP profiles](docs/WSP-PROFILES.md)
 - [Roadmap and remaining hardware validation](docs/ROADMAP.md)
 - [Contributing and offline checks](docs/CONTRIBUTING.md)
 

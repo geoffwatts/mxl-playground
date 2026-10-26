@@ -54,6 +54,7 @@ jumbo/SFP/inventory endpoints above, then:
 docker build --platform linux/amd64 -t mxl-arc-build:bookworm toolchain/arc
 python3 tools/build_management_runtime.py --full --output-dir artifacts/management-vlan/native-runtime-full
 python3 tools/build_console_endpoint.py --output-dir artifacts/console/endpoint
+python3 tools/build_lldp_endpoint.py --output-dir artifacts/lldp/endpoint
 ```
 
 The management runtime must have SHA-256
@@ -155,6 +156,7 @@ python3 tools/build_developer_update.py \
   --html artifacts/ui/switch-ui.html \
   --endpoints artifacts/management-vlan/native-runtime-full/endpoint.bin \
   --console-endpoint artifacts/console/endpoint/endpoint.bin \
+  --lldp-endpoint artifacts/lldp/endpoint/endpoint.bin \
   --output-dir artifacts/developer-update
 python3 tools/native_layout.py artifacts/developer-update/native-ui-update-EXPERIMENTAL.bin
 ```
@@ -191,3 +193,10 @@ login followed by fixed read requests. Its report excludes credentials, cookies,
 MAC/IP fields, raw module EEPROM and serial numbers. It does not download saved
 configuration, firmware or call the LLDP status handler (which has a startup
 side effect). Inspect even a sanitised report before sharing it.
+
+## LLDP cache and WSP profiles
+
+Add `--lldp-endpoint artifacts/lldp/endpoint/endpoint.bin` to the clean update
+builder to include the switch-side 16-neighbour cache. It requires the full
+runtime and terminal registration chain. See [LLDP](LLDP.md) for operation and
+tests, and [WSP profiles](WSP-PROFILES.md) for the incremental adapter boundary.

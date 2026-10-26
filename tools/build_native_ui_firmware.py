@@ -14,6 +14,7 @@ import zlib
 from build_dma_trace_candidate import limm
 from build_dma_trace_candidate import jump
 from verify_firmware_signatures import verify_component
+from wsp_profile import load as load_wsp_profile
 from build_dns_guard_candidate import GUARD as DNS_GUARD, CALL as DNS_CALL, PATCHED_CALL as DNS_PATCHED_CALL
 
 CLEAN_BASE_SHA='8fe6e6c06a6226fe37814b5c1ae0172fb771a277dda6a17d4e0a22ab467345cb'
@@ -32,9 +33,10 @@ RUNTIME_TRIAL_SHA='af04e4358e16d44a13cd83113719167dda3923dfe091fb1c1b7be66492419
 SFP_SHA='c44640e73f83f70e1ecdfcf9eb66cf68b44998389aeba219788645703dac033d'
 JUMBO_SHA='a2ea068058ce6d5ec8b5c6e062af449b8ba8d489d32b2bad89c8335f73d5cedb'
 CONSOLE_SHA='bb5d240444e9f007f98108ff549829de1f6b559f7c67925bf4d7f940f918f91c'
+LLDP_SHA='2d751cb5ac27c5dd7815136ab05a027553aceee68409ff8c81232ccb9e822a16'
 
 
-def build(base,html,vendor,key,jumbo=None,console=None):
+def build(base,html,vendor,key,jumbo=None,console=None,lldp=None):
     base_digest=hashlib.sha256(base).hexdigest()
     if base_digest not in (BASE_SHA,CLEAN_BASE_SHA):
         raise ValueError('Expected the warm-boot-verified DMA relocation image')
@@ -113,6 +115,20 @@ def build(base,html,vendor,key,jumbo=None,console=None):
             raise ValueError('Console continuation or code window differs')
         wsp[0x2b0000:0x2b4000]=console
         wsp[0x2c300c:0x2c3014]=jump(0x402b0000)
+    if lldp is not None:
+        profile,_=load_wsp_profile();address,size=profile['lldp_region'];lldp_offset=address-profile['wsp_base'];hook=profile['lldp_hook']
+        if console is None or len(lldp)!=size or hashlib.sha256(lldp).hexdigest()!=LLDP_SHA:
+            raise ValueError('LLDP requires the audited terminal chain and pinned neighbour adapter')
+        magic,receive,code_bytes=struct.unpack_from('<4sII',lldp,0x14)
+        if magic!=b'LLDP' or not address+32<=receive<address+32+code_bytes or code_bytes>size-32:
+            raise ValueError('Invalid LLDP entry table')
+        if any(v!=255 for v in wsp[lldp_offset:lldp_offset+size]) or wsp[hook['offset']:hook['offset']+8]!=bytes.fromhex(hook['expected']):
+            raise ValueError('LLDP code window or receive hook differs')
+        if wsp[0x2b000c:0x2b0014]!=jump(profile['symbols']['registration_continue']):
+            raise ValueError('Unexpected terminal registration continuation')
+        wsp[lldp_offset:lldp_offset+size]=lldp
+        wsp[hook['offset']:hook['offset']+8]=bytes.fromhex('2220800f')+limm(receive)
+        wsp[0x2b000c:0x2b0014]=jump(address)
     # An anonymous/stale status request must not clear another user's session.
     # Keep rejection/expiry checks; make only those two failure memsets length 0.
     for off in (0x1b434,0x1b582):
@@ -152,6 +168,8 @@ def build(base,html,vendor,key,jumbo=None,console=None):
         regions.append((0x56a14,8,'preserve resolver-owned UDP contexts during idle cleanup'))
     if console is not None:
         regions.extend([(0x2b0000,0x4000,'shared UART terminal endpoint'),(0x2c300c,8,'terminal registration continuation')])
+    if lldp is not None:
+        regions.extend([(lldp_offset,size,'LLDP neighbour cache and profile adapter'),(hook['offset'],8,'LLDP receive observer'),(0x2b000c,8,'LLDP registration continuation')])
     ledger=[]
     for offset,length,purpose in regions:
         before=base[WSP_START+offset:WSP_START+offset+length];after=bytes(wsp[offset:offset+length])
@@ -175,6 +193,8 @@ def build(base,html,vendor,key,jumbo=None,console=None):
         'management_vlan_durable_writes':jumbo is not None and hashlib.sha256(jumbo).hexdigest()==RUNTIME_FULL_SHA,
         'dns_context_lifetime_guard':jumbo is not None and hashlib.sha256(jumbo).hexdigest()==RUNTIME_FULL_SHA,
         'shared_uart_terminal':console is not None,
+        'lldp_neighbour_cache':lldp is not None,
+        'wsp_profile':load_wsp_profile()[0]['id'],
         'jumbo_endpoint_sha256':hashlib.sha256(jumbo).hexdigest() if jumbo is not None else None,
         'patched_literals':{'length':'15f72..15f76','pointer':'15f78..15f7c'},
         'container_sha256':hashlib.sha256(container).hexdigest(),'container_bytes':len(container),
@@ -195,9 +215,10 @@ def main():
     p.add_argument('--key-tag',type=Path,default=Path('artifacts/spi/internal-secondary-a000.bin'))
     p.add_argument('--jumbo-endpoint',type=Path,help='Optional instruction-verified native endpoint binary')
     p.add_argument('--console-endpoint',type=Path,help='Optional instruction-verified shared UART terminal')
+    p.add_argument('--lldp-endpoint',type=Path,help='Optional instruction-verified LLDP cache')
     p.add_argument('--output-dir',type=Path,default=Path('artifacts/native-ui'))
     a=p.parse_args()
-    spi,update,report=build(a.base.read_bytes(),a.html.read_bytes(),a.vendor.read_bytes(),a.key_tag.read_bytes(),a.jumbo_endpoint.read_bytes() if a.jumbo_endpoint else None,a.console_endpoint.read_bytes() if a.console_endpoint else None)
+    spi,update,report=build(a.base.read_bytes(),a.html.read_bytes(),a.vendor.read_bytes(),a.key_tag.read_bytes(),a.jumbo_endpoint.read_bytes() if a.jumbo_endpoint else None,a.console_endpoint.read_bytes() if a.console_endpoint else None,a.lldp_endpoint.read_bytes() if a.lldp_endpoint else None)
     a.output_dir.mkdir(parents=True,exist_ok=True)
     if report['complete_spi_candidate']:(a.output_dir/'native-ui-spi-EXPERIMENTAL.bin').write_bytes(spi)
     (a.output_dir/'native-ui-update-EXPERIMENTAL.bin').write_bytes(update)

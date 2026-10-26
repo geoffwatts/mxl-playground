@@ -9,13 +9,14 @@ import hashlib
 import struct
 import zlib
 from build_dma_trace_candidate import jump,limm
+from wsp_profile import load,admit
 
-VENDOR_SHA='085ce44aeffe82b75676c5784b915ab80cfa0262a1ec5356a47832a45af07426'
+VENDOR_SHA=load()[0]['vendor_sha256']
 CLEAN_SHA='8fe6e6c06a6226fe37814b5c1ae0172fb771a277dda6a17d4e0a22ab467345cb'
 
 
 def prepare(vendor):
-    if hashlib.sha256(vendor).hexdigest()!=VENDOR_SHA:raise ValueError('Unknown vendor input; exact audited V2 update required')
+    admit(vendor)
     magic,ws,wcrc,gs,gcrc=struct.unpack_from('<5I',vendor)
     if magic!=0xf48bf48b or ws!=0x2d6000 or len(vendor)!=20+ws+gs:raise ValueError('Unexpected V2 layout')
     wsp=bytearray(vendor[20:20+ws])

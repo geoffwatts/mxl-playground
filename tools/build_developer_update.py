@@ -23,17 +23,19 @@ def main():
     p.add_argument('--html',type=Path,required=True)
     p.add_argument('--endpoints',type=Path,required=True)
     p.add_argument('--console-endpoint',type=Path,help='Optional independently decoded shared UART terminal')
+    p.add_argument('--lldp-endpoint',type=Path,help='Optional independently decoded LLDP neighbour cache')
     p.add_argument('--output-dir',type=Path,required=True)
     a=p.parse_args()
     inputs=[a.vendor,a.key_tag or a.key_log,a.html,a.endpoints]
     if a.console_endpoint:inputs.append(a.console_endpoint)
+    if a.lldp_endpoint:inputs.append(a.lldp_endpoint)
     outputs=[a.output_dir/'native-ui-update-EXPERIMENTAL.bin',a.output_dir/'firmware-manifest.json']
     if any(o.resolve()==i.resolve() for o in outputs for i in inputs):raise ValueError('Output would overwrite an input')
     vendor=a.vendor.read_bytes();base,ledger=prepare(vendor)
     key=validate_key_tag(a.key_tag.read_bytes()) if a.key_tag else from_uart(a.key_log.read_text())
     factory_signature=verify_component(vendor[20:20+0x2d6000],key[8:72])
     if not factory_signature['signature_valid']:raise ValueError('Supplied public key does not verify the audited factory WSP')
-    _,update,report=build(base,a.html.read_bytes(),vendor,key,a.endpoints.read_bytes(),a.console_endpoint.read_bytes() if a.console_endpoint else None)
+    _,update,report=build(base,a.html.read_bytes(),vendor,key,a.endpoints.read_bytes(),a.console_endpoint.read_bytes() if a.console_endpoint else None,a.lldp_endpoint.read_bytes() if a.lldp_endpoint else None)
     report.update({'clean_vendor_build':True,'vendor_sha256':hashlib.sha256(vendor).hexdigest(),'DMA_patches':ledger,'complete_spi_candidate':False,'boot_configuration_unchanged':True,'requires_existing_bootstrap':True})
     report.pop('spi_candidate_sha256',None)
     report['factory_WSP_signature']=factory_signature

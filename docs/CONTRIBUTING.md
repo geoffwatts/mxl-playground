@@ -46,3 +46,11 @@ also need the ARC toolchain in BUILD.md. Do not run hardware writes in normal CI
 Changed ARC instructions need independent decoding and hardware checks. State
 what evidence establishes: readback, persistence, boot, forwarding and recovery
 are separate tests. Report sanitized errors and target versions, not raw captures.
+
+LLDP cache and platform-profile checks:
+
+```sh
+python3 -m unittest discover -s tests -p test_lldp_cache.py
+python3 -m unittest discover -s tests -p test_wsp_profile.py
+node --test tests/lldp.test.mjs
+```

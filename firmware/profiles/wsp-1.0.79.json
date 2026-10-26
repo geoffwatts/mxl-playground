@@ -1,0 +1,41 @@
+{
+  "id": "wsp-1.0.79-xikestor-2.0.0.4",
+  "vendor_sha256": "085ce44aeffe82b75676c5784b915ab80cfa0262a1ec5356a47832a45af07426",
+  "wsp_base": 1073741824,
+  "wsp_bytes": 2973696,
+  "lldp_region": [
+    1076576256,
+    49152
+  ],
+  "lldp_hook": {
+    "offset": 245800,
+    "expected": "2220800f0340b8b9"
+  },
+  "symbols": {
+    "calloc": 1073958700,
+    "free": 1073958600,
+    "http_request": 1074640952,
+    "http_write": 1074643444,
+    "http_error": 1074644748,
+    "http_register": 1074652608,
+    "strcmp": 1073959052,
+    "now_ms": 1879103696,
+    "mutex_init": 1879057680,
+    "mutex_trylock": 1879057228,
+    "mutex_lock": 1879057712,
+    "mutex_unlock": 1879057724,
+    "registry_lock": 1879088320,
+    "registry_unlock": 1879088988,
+    "registry_mutex": 553012064,
+    "registry_head": 552680188,
+    "registry_tail": 552680192,
+    "registry_mask": 552681220,
+    "packet_clone": 1879068596,
+    "packet_unref": 1879064824,
+    "packet_skip": 1879067856,
+    "packet_read": 1879068104,
+    "lldp_parser": 1073985976,
+    "lldp_latest": 552740486,
+    "registration_continue": 1073833228
+  }
+}

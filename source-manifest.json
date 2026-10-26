@@ -6,8 +6,8 @@
   "captured_configuration_included": false,
   "files": {
     ".github/workflows/source-checks.yml": {
-      "bytes": 2156,
-      "sha256": "50cc160a7d27222cb283f8ee506b85ceea26805346bd18cec49449703d496100"
+      "bytes": 2321,
+      "sha256": "844a465c24029b770342861f236da7635f48eca2f2577893f803ac206f46fc3a"
     },
     ".gitignore": {
       "bytes": 179,
@@ -18,8 +18,8 @@
       "sha256": "3921800b801e4f2b8de5fc1c1e5f2d90d055f76b3f9828965917e40946aaf90c"
     },
     "README.md": {
-      "bytes": 10441,
-      "sha256": "65ada4e68244d81cdeb9abd4f515a1f8604aa08cb5e10cb191e91c6ece54d7ab"
+      "bytes": 10610,
+      "sha256": "e9442821b45afd3906040fd1040c1859c68439076f7b46c286a8add739d3181a"
     },
     "designs/mxl-management/LICENSE-RTLPlayground": {
       "bytes": 1087,
@@ -58,8 +58,8 @@
       "sha256": "13e687b72d6d1cdf2993623e945cbfd2c886449675e305130634d45736687424"
     },
     "designs/mxl-management/live-app.mjs": {
-      "bytes": 60264,
-      "sha256": "5c5552bf5892148962653fc245ffff0e64aa4a15717eeaa77f6df0fa168c3c73"
+      "bytes": 59858,
+      "sha256": "d44cb94d70b9e04e041e2d60d0dbe5560993a3116f78372db32fbb24aac5c7d1"
     },
     "designs/mxl-management/live-dom.mjs": {
       "bytes": 1812,
@@ -85,6 +85,14 @@
       "bytes": 3016,
       "sha256": "37290aded3dc026b3def9a7c04c4b76261b7d2c56262436dd4ca34ec01555c48"
     },
+    "designs/mxl-management/lldp-view.mjs": {
+      "bytes": 2047,
+      "sha256": "429c1d076edb28f6e2430b3f5b8ab0bf605b6f8611b294623047890476c6649a"
+    },
+    "designs/mxl-management/lldp.mjs": {
+      "bytes": 3750,
+      "sha256": "981a7997cf7abbbee7baa7ee7136fec3b436e8018de7d217f37ca12c0c2bbcd0"
+    },
     "designs/mxl-management/management-vlan-view.mjs": {
       "bytes": 4711,
       "sha256": "07fea417c26bbe972c5724a4acf4419bec866d48876969865a22bfeeb22c6102"
@@ -94,8 +102,8 @@
       "sha256": "f423ee8e68447954c4d21cb279de8b6a604115a1cd3123500d4a613ed2531668"
     },
     "designs/mxl-management/native-api.mjs": {
-      "bytes": 15866,
-      "sha256": "f0dfed1165147d95736fc61195c5b07b179a1d0cd11fdcbac94aca57eb7254ad"
+      "bytes": 16298,
+      "sha256": "c15408f5b52e0be2aaa2383ce70a0d0e555de3d2f43bac1d60ca08fbb88a071d"
     },
     "designs/mxl-management/native-contracts.mjs": {
       "bytes": 15506,
@@ -158,12 +166,12 @@
       "sha256": "903a72fc1770965c0206ba053fadd2064d77816a415d1d58c0f0b97a957b6ce8"
     },
     "docs/BUILD.md": {
-      "bytes": 9955,
-      "sha256": "60f928bce992ca1f20b975f41f8a8f0dc4b80c144292008859daac4ab5492bcf"
+      "bytes": 10434,
+      "sha256": "ab005a456597aa66727682cbc868a56bced81d3325680afcf93d10a917ef7943"
     },
     "docs/CONTRIBUTING.md": {
-      "bytes": 2215,
-      "sha256": "7f5fd518cbfb46c5662e5bc431dc944c9d1711eb3c8a82f267c0edd217683523"
+      "bytes": 2420,
+      "sha256": "8f64d78943579e1c86e1170af24ed7e02ae2a246aa5c231e6b0c6f0a050fc972"
     },
     "docs/DNS-SNTP-NOTES.md": {
       "bytes": 4155,
@@ -180,6 +188,10 @@
     "docs/LAGS.md": {
       "bytes": 3446,
       "sha256": "ac85a4aa78f23af07fcb4c120e3293b9cee7e4de61a01a3a2770a3cea3bafb96"
+    },
+    "docs/LLDP.md": {
+      "bytes": 5461,
+      "sha256": "face981ab722c2ec9acec9bd13aa11a8c188393126bb807e581fe5e23a456dd4"
     },
     "docs/MANAGEMENT-VLAN.md": {
       "bytes": 4868,
@@ -217,6 +229,10 @@
       "bytes": 1874,
       "sha256": "bcfb594f9ce62321cbd99124c7b0543c0d8bb3a1b5d5e859408caad42e8974fa"
     },
+    "docs/WSP-PROFILES.md": {
+      "bytes": 2312,
+      "sha256": "6e7013c92539a8e1c46e24beedd2f7b03bf2ef8dd1465cc638d9622ec9942d0a"
+    },
     "docs/images/firmware.png": {
       "bytes": 145889,
       "sha256": "20bd2be351e52098fcef0f816f2dbf49a8b925e455e5a477ad24bfec2554a954"
@@ -226,8 +242,8 @@
       "sha256": "35ce00d302469346003584190f105a0d4ee9b159e09a1affb89dc97743ea35fa"
     },
     "docs/images/lldp.png": {
-      "bytes": 134113,
-      "sha256": "37a24836c0d99ba8492be47259f2ff388f66f7884636c0af749a364647006749"
+      "bytes": 150640,
+      "sha256": "1f1778bae6429ceae9d87d89f09cffaa02b1dd662b926cde64be986929c0d3d1"
     },
     "docs/images/management-vlan.png": {
       "bytes": 131348,
@@ -276,6 +292,22 @@
     "firmware/dns_context_guard.S": {
       "bytes": 650,
       "sha256": "32cfba8b7997712a27d55aa7ae7d0f0e23aee3d775b9d811cd295a25f2b6a9e5"
+    },
+    "firmware/lldp_cache.c": {
+      "bytes": 5108,
+      "sha256": "92df399a2e40ffddb47d07bd0940310c2c50d459530587acb7fff7d341fcc552"
+    },
+    "firmware/lldp_cache.h": {
+      "bytes": 1151,
+      "sha256": "93dfa3ac555475e29b58bc521fa037624e737362584d3a63b65e11ce9fb4150f"
+    },
+    "firmware/lldp_native.c": {
+      "bytes": 4779,
+      "sha256": "d4b754738adb9e8d6e3ca9bc42647675077d159f8dd5cb580911d8f066cf0af5"
+    },
+    "firmware/lldp_native.ld": {
+      "bytes": 402,
+      "sha256": "d4cd5f8a268805877cf26ccd8a78218fffa20e4e31ec5a21d9586d5f7413fc79"
     },
     "firmware/management_vlan_controller.c": {
       "bytes": 5724,
@@ -385,6 +417,26 @@
       "bytes": 1180,
       "sha256": "b6e00cb854f32ebb2bc22465ea7d26580095d01dc22ad3d6f66d437599abfab5"
     },
+    "firmware/profiles/goodtop-zx310s-8t2xs.json": {
+      "bytes": 248,
+      "sha256": "0073ae780b9815519fdba1769283744bb47d1bb7d8533c9a8fe9e82a456d8ab6"
+    },
+    "firmware/profiles/wsp-1.0.79.json": {
+      "bytes": 1104,
+      "sha256": "98fa4f55ccbd455fb8646fae592adea769cde56fc027b3eded1c303d0fbf6e9a"
+    },
+    "firmware/wsp_arithmetic.c": {
+      "bytes": 944,
+      "sha256": "29a35e2bcf907d3349140c028aba040aecf3052869fa05bcf2ab5864c47ba6f4"
+    },
+    "firmware/wsp_platform.c": {
+      "bytes": 3305,
+      "sha256": "4623e81d28b7acc7111bd358e5d967d0c4c89caee16cc1d3d625090d619ad9a1"
+    },
+    "firmware/wsp_platform.h": {
+      "bytes": 1156,
+      "sha256": "57b1a27b0cb5fe5550c557454cb0f3bb568747055b69c2913d87d6b0365f359c"
+    },
     "requirements-build.txt": {
       "bytes": 112,
       "sha256": "2a0b3ce39bd131e7a37310dfaf17e2e7f777470c30454ec0d5974a7ce501283b"
@@ -409,6 +461,14 @@
       "bytes": 1685,
       "sha256": "dced026dcfafc48cc4050ff2f3d639d141a70026fed22e3a7282d416fe07cce8"
     },
+    "tests/lldp.test.mjs": {
+      "bytes": 2291,
+      "sha256": "21ff6b25e06474ef489f4897d18d197d74a02fe09b25ebbf318025452366e993"
+    },
+    "tests/lldp_cache_fixture.c": {
+      "bytes": 4838,
+      "sha256": "08185f38409e552a7d3bf35f74055ea5536a11b7d2d5193c2152824ceb934a60"
+    },
     "tests/qos.test.mjs": {
       "bytes": 981,
       "sha256": "7af4c4cadc6a44834675f1e2700046ffd6ecc75032d8badf776b19c51c0870bf"
@@ -428,6 +488,10 @@
     "tests/test_diagnostics.py": {
       "bytes": 1088,
       "sha256": "2692a7fe72a46c2f10f3f5ce657ebff4046291bca43871b7aac73e3a33af6df5"
+    },
+    "tests/test_lldp_cache.py": {
+      "bytes": 753,
+      "sha256": "f7afee5f38224df6f43083ffacf34f20f26c2842153f639142baf4c6129d7f8b"
     },
     "tests/test_migration.py": {
       "bytes": 5140,
@@ -457,6 +521,10 @@
       "bytes": 5353,
       "sha256": "b467d85c240e1802ac7dc132f0b635026ff8910da877f8bf0344f16a860f299c"
     },
+    "tests/test_wsp_profile.py": {
+      "bytes": 801,
+      "sha256": "411bda9f06f3985387fc53a870b0967038dd6810450757aa7e1b30fdbe73793e"
+    },
     "toolchain/arc/Dockerfile": {
       "bytes": 438,
       "sha256": "9a932822e509c8c05904f717d209721a067883b8348764ac56bb0a2106cb601a"
@@ -474,8 +542,8 @@
       "sha256": "2763d7ac4a72c4a1932a4a7fc62b14cd4de26cc9230192af7e910f52e2594b49"
     },
     "tools/build_developer_update.py": {
-      "bytes": 2730,
-      "sha256": "c5b1e691af057a8ef8cd093f3823c52ef1168d22b868740d8a14146c1810cbdb"
+      "bytes": 2949,
+      "sha256": "cd607d47bb51e8992e88f5718c63c8487c245cdc33c86cc45fb108f353524a59"
     },
     "tools/build_dma_trace_candidate.py": {
       "bytes": 3772,
@@ -493,6 +561,10 @@
       "bytes": 2099,
       "sha256": "99b5b9773adc7d7db0df2740f7f2f3a74db56943a6439d0a4f50c6fc2b0ca9e7"
     },
+    "tools/build_lldp_endpoint.py": {
+      "bytes": 3077,
+      "sha256": "22683bf920f6046a36a081ed9e5d86fc4ed820f27aec72359b82a2b4db3badf9"
+    },
     "tools/build_management_probe.py": {
       "bytes": 11007,
       "sha256": "15aaf541436678297e9b40a02db977f59199b3646a49a74bb8439aec5841a050"
@@ -506,8 +578,8 @@
       "sha256": "355cdc9d704c9a4f55588ec59d40d5203712d6495d2b45fdf959b23baa7dd2b4"
     },
     "tools/build_native_ui_firmware.py": {
-      "bytes": 15172,
-      "sha256": "04dbb952f8f0cae8f6ae89d2b821f56a3a94be42a05236ce6593102f30a17014"
+      "bytes": 16902,
+      "sha256": "03c791d810ee2b4d67a8baacea097d13d28edcd6436946b8f70690887c55af06"
     },
     "tools/build_sfp_endpoint.py": {
       "bytes": 2227,
@@ -538,8 +610,8 @@
       "sha256": "a4f8eb451819de577c11f50b90ca607b66ca98a57b27c0c02fc64d81aa90f894"
     },
     "tools/installer_image.py": {
-      "bytes": 5210,
-      "sha256": "6d1b568d9ea8e6e15d80b2a089ff91374c4ea70bae5d66265c1757d019ac0195"
+      "bytes": 6169,
+      "sha256": "75a265d408786fcb2ee085b78b2dabd18ade524123663c2e86b1a306cc79b2b1"
     },
     "tools/installer_uart.py": {
       "bytes": 3365,
@@ -574,8 +646,8 @@
       "sha256": "7fcf59064a0dc512193ce583bb1e530a2aa923a4f008755a9fcc4324f35fa658"
     },
     "tools/prepare_native_base.py": {
-      "bytes": 2111,
-      "sha256": "2dcac6780d5dc464c13f67f48f3a4927ca790b0ebaa0d30a9e8410cadca76315"
+      "bytes": 1995,
+      "sha256": "ba8b467d5421b0f0233af556426eec6a8ffcbe7e81fec8e0775be30e21f1e997"
     },
     "tools/prepare_sfp_endpoint.py": {
       "bytes": 7355,
@@ -600,6 +672,10 @@
     "tools/verify_firmware_signatures.py": {
       "bytes": 3459,
       "sha256": "a27dc44c98e762b5683a30c9f374deb77a5560c8cf6a85c52b91f8a35728e7c4"
+    },
+    "tools/wsp_profile.py": {
+      "bytes": 1312,
+      "sha256": "2027c7055212094c61e44f9eef11653b2987c9b492a94c57df2ac21287408e6d"
     },
     "designs/mxl-management/native-metadata.mjs": {
       "bytes": 3953,
