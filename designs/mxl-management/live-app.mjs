@@ -15,8 +15,8 @@ const nativeMode=document.querySelector('meta[name="mxl-transport"]')?.content==
 const $=s=>document.querySelector(s);
 const state={session:null,cache:{},errors:{},busy:false,draft:false,dirty:false,inventory:{},cli:null,activity:[],result:null,firmware:null,rates:{},previous:null,previousTime:0};
 let route=location.hash.slice(1)||'dash',qosTab='rates',token='',generation=0,managementVlanPolling=false;
-const savedTheme=localStorage.getItem('mxl-theme')||'auto';
-function theme(t){localStorage.setItem('mxl-theme',t);document.documentElement.dataset.theme=t==='auto'?(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'):t;}
+let savedTheme='auto';try{savedTheme=localStorage.getItem('mxl-theme')||'auto';}catch{}
+function theme(t){try{localStorage.setItem('mxl-theme',t);}catch{}document.documentElement.dataset.theme=t==='auto'?(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'):t;}
 theme(savedTheme);
 const data=key=>state.cache[key]?.data;
 const obj=key=>data(key)||{};
@@ -146,7 +146,7 @@ async function navigate(next,push=false){if(state.firmwareWriting){toast('Firmwa
 window.addEventListener('hashchange',()=>navigate(location.hash.slice(1)||'dash'));
 $('#refresh').addEventListener('click',async()=>{if(state.draft&&!confirm('Discard edits and reload from switch?'))return;state.draft=false;await refresh();});
 $('#save').addEventListener('click',()=>apply('save',{}).catch(e=>toast(e.message)));
-$('#connect').addEventListener('click',async()=>{if(state.busy)return;if(state.session.connected){if(state.draft&&!confirm('Discard unapplied edits and sign out?'))return;try{await api('/api/disconnect',{});state.session.connected=false;state.cache={};state.errors={};state.draft=false;state.result=null;render();}catch(e){toast(e.message);}}else{openLogin();}});
+$('#connect').addEventListener('click',async()=>{if(state.busy)return;if(state.session?.connected){if(state.draft&&!confirm('Discard unapplied edits and sign out?'))return;try{await api('/api/disconnect',{});state.session.connected=false;state.cache={};state.errors={};state.draft=false;state.result=null;render();}catch(e){toast(e.message);}}else{openLogin();}});
 $('#burger').addEventListener('click',()=>$('#nav').classList.toggle('open'));
 $('#theme').addEventListener('click',()=>theme(document.documentElement.dataset.theme==='dark'?'light':'dark'));
 $('#dialog').addEventListener('cancel',()=>{const resolve=confirmationResolve;confirmationResolve=null;resolve?.(false);});
@@ -171,8 +171,9 @@ document.addEventListener('submit',async e=>{
   toast(error.message);
  }finally{state.firmwareWriting=false;state.busy=!!state.firmwareTransfer;render();}
 });
+document.documentElement.dataset.mxlStarted='1';
 window.addEventListener('beforeunload',e=>{if(state.draft||state.firmwareWriting){e.preventDefault();e.returnValue='';}});
-try{state.session=await api('/api/session');token=state.session.csrf;canonicalPath();state.inventory=await api('/api/inventory');render();if(state.session.connected){await read('status');await read('ports');await refresh();}}catch(err){$('#content').innerHTML=card('Management service unavailable',`<p class="live-error">${esc(err.message)}</p><p>${nativeMode?'Check the switch connection and reload.':'Start <code>python3 tools/serve_live.py</code> and open its local URL.'}</p>`);}
+try{state.session=await api('/api/session');token=state.session.csrf;canonicalPath();render();state.inventory=await api('/api/inventory');if(state.session.connected){await read('status');await read('ports');await refresh();}}catch(err){$('#content').innerHTML=card('Management service unavailable',`<p class="live-error">${esc(err.message)}</p><p>${nativeMode?'Check the switch connection, then retry. <button class="ctl" onclick="location.reload()">Retry loading</button>':'Start <code>python3 tools/serve_live.py</code> and open its local URL.'}</p>`);}
 setInterval(()=>{if(document.visibilityState==='visible'&&!$('#dialog').open)refresh({quiet:true});},20000);
 
 function loseSession(error){if(!state.session?.connected)return;state.session.connected=false;chrome();toast(state.draft?'Session ended. Sign in again to keep working on these edits.':error.message);if(!state.draft)render();}

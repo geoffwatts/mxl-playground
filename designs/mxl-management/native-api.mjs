@@ -25,13 +25,14 @@ export function settingsIdentity(bytes){
  }
  return result;
 }
-export function createNativeApi({fetch:fetcher=globalThis.fetch,storage=globalThis.localStorage,address=globalThis.location?.hostname,document:doc=globalThis.document,timeout=6500,crypto:random=globalThis.crypto}={}){
+function browserStorage(){try{return globalThis.localStorage;}catch{return null;}}
+export function createNativeApi({fetch:fetcher=globalThis.fetch,storage=browserStorage(),address=globalThis.location?.hostname,document:doc=globalThis.document,timeout=6500,crypto:random=globalThis.crypto}={}){
  let connected=false,tail=Promise.resolve();const activity=[],inventoryKey='mxl-native-inventory:'+address;
  const serial=work=>{const next=tail.then(work,work);tail=next.catch(()=>{});return next;};
  function expired(raw){if(/login\.html/.test(raw.slice(0,600))&&/redirect|window\.location/.test(raw.slice(0,600))){connected=false;throw Error('Switch session expired; reconnect');}}
  async function request(path,{method='GET',body,encoding,stream=false,binary=false,allowEmpty=false,authenticate=true,allowText=false,timeoutMs=timeout}={}){
   if(authenticate&&!connected)throw Error('Connect to the switch first');
-  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),timeoutMs);let response,raw='',complete=true,bytes;
+  const controller=new AbortController();let timer;const deadline=new Promise((_,reject)=>{timer=setTimeout(()=>{controller.abort();reject(Error('Switch request timed out; it was not retried'));},timeoutMs);});const wait=p=>Promise.race([p,deadline]);let response,raw='',complete=true,bytes;
   try{
    let payload=body===undefined?'':JSON.stringify(body);
    if(encoding==='uint16le'){
@@ -42,13 +43,13 @@ export function createNativeApi({fetch:fetcher=globalThis.fetch,storage=globalTh
    else if(encoding==='console'){if(path!=='/console.json'||method!=='POST')throw Error('Invalid console route');payload=encodeConsole(body);}
    else if(encoding==='firmware-chunk'){if(path!=='/firmware/upgrade'||method!=='POST'||!(body instanceof Uint8Array)||!body.length||body.length>41000)throw Error('Invalid firmware chunk');payload=body;}
    else if(encoding)throw Error('Unsupported request encoding');
-   response=await fetcher(path,{method,credentials:'same-origin',cache:'no-store',redirect:'error',signal:controller.signal,headers:method==='POST'?{'Content-Type':encoding?'application/octet-stream':'application/json'}:{},body:method==='POST'?payload:undefined});
+   response=await wait(fetcher(path,{method,credentials:'same-origin',cache:'no-store',redirect:'error',signal:controller.signal,headers:method==='POST'?{'Content-Type':encoding?'application/octet-stream':'application/json'}:{},body:method==='POST'?payload:undefined}));
    if(!response.ok)throw Error(response.status===409?(path==='/console.json'?'Switch HTTP 409: Terminal session or input sequence changed; reconnect without replaying input.':'Switch HTTP 409: Disable management isolation or restore the pending policy before changing forwarding settings.'):'Switch HTTP '+response.status);
    const reader=response.body?.getReader();if(reader){const decoder=new TextDecoder(),chunks=[];let size=0;
-    try{while(true){const {value,done}=await reader.read();if(done)break;size+=value.length;if(size>16*1024*1024)throw Error('Switch response exceeds size limit');if(binary)chunks.push(value);else raw+=decoder.decode(value,{stream:true});}}
+    try{while(true){const {value,done}=await wait(reader.read());if(done)break;size+=value.length;if(size>16*1024*1024)throw Error('Switch response exceeds size limit');if(binary)chunks.push(value);else raw+=decoder.decode(value,{stream:true});}}
     catch(e){if(!stream||!controller.signal.aborted||!raw)throw e;complete=false;}
     if(binary){bytes=new Uint8Array(size);let p=0;for(const chunk of chunks){bytes.set(chunk,p);p+=chunk.length;}}else raw+=decoder.decode();
-   }else if(binary)bytes=new Uint8Array(await response.arrayBuffer());else raw=await response.text();
+   }else if(binary)bytes=new Uint8Array(await wait(response.arrayBuffer()));else raw=await wait(response.text());
   }catch(e){if(allowEmpty&&/^\/lldp_(enable|disable)\.json$/.test(path)&&method==='POST'&&!response&&!controller.signal.aborted&&e instanceof TypeError)return {data:null,empty_reply:true,acknowledged:false};throw Error(controller.signal.aborted?'Switch request timed out; it was not retried':e.message);}
   finally{clearTimeout(timer);}
   if(binary){const prefix=new TextDecoder().decode(bytes.subarray(0,600));if(/^\s*[<{]/.test(prefix))expired(prefix);return {bytes};}

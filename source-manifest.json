@@ -6,8 +6,8 @@
   "captured_configuration_included": false,
   "files": {
     ".github/workflows/source-checks.yml": {
-      "bytes": 2321,
-      "sha256": "844a465c24029b770342861f236da7635f48eca2f2577893f803ac206f46fc3a"
+      "bytes": 2344,
+      "sha256": "aee9876ea2b4d4bdbd0053e6f5cc004f5399fa5110db2b60c04de95509a4e896"
     },
     ".gitignore": {
       "bytes": 179,
@@ -58,8 +58,8 @@
       "sha256": "13e687b72d6d1cdf2993623e945cbfd2c886449675e305130634d45736687424"
     },
     "designs/mxl-management/live-app.mjs": {
-      "bytes": 59858,
-      "sha256": "d44cb94d70b9e04e041e2d60d0dbe5560993a3116f78372db32fbb24aac5c7d1"
+      "bytes": 60020,
+      "sha256": "67348f471cb10bbf18c30bc021004c1e8d845c4343989653805f4dc0d6f1938b"
     },
     "designs/mxl-management/live-dom.mjs": {
       "bytes": 1812,
@@ -82,8 +82,8 @@
       "sha256": "fce12fda08d334b1203ac8c3b9250f1dc64d9a8243594ca0e1b4d7ac601d8204"
     },
     "designs/mxl-management/live.html": {
-      "bytes": 3016,
-      "sha256": "37290aded3dc026b3def9a7c04c4b76261b7d2c56262436dd4ca34ec01555c48"
+      "bytes": 3343,
+      "sha256": "e618d0790a5578a83d1969e450f1bea5fe835dcf5735d8668508d060b2489341"
     },
     "designs/mxl-management/lldp-view.mjs": {
       "bytes": 2047,
@@ -102,8 +102,8 @@
       "sha256": "f423ee8e68447954c4d21cb279de8b6a604115a1cd3123500d4a613ed2531668"
     },
     "designs/mxl-management/native-api.mjs": {
-      "bytes": 16298,
-      "sha256": "c15408f5b52e0be2aaa2383ce70a0d0e555de3d2f43bac1d60ca08fbb88a071d"
+      "bytes": 16557,
+      "sha256": "0b0e6a09134a7df856b9393739ebc1be248a8097d7c638bdb6e00032c2a5ec4f"
     },
     "designs/mxl-management/native-contracts.mjs": {
       "bytes": 15506,
@@ -166,8 +166,8 @@
       "sha256": "903a72fc1770965c0206ba053fadd2064d77816a415d1d58c0f0b97a957b6ce8"
     },
     "docs/BUILD.md": {
-      "bytes": 10434,
-      "sha256": "ab005a456597aa66727682cbc868a56bced81d3325680afcf93d10a917ef7943"
+      "bytes": 10776,
+      "sha256": "0d810154379dab1c1e95177cdd29af2ccec8b591cdc568b0e75365d50317e3fc"
     },
     "docs/CONTRIBUTING.md": {
       "bytes": 2420,
@@ -477,6 +477,10 @@
       "bytes": 4217,
       "sha256": "203e96797ef7925760601bbfe30840ec50f39f7de5ab8195b8871d562c180b7b"
     },
+    "tests/startup.test.mjs": {
+      "bytes": 2809,
+      "sha256": "a682f826a1434cf2d2c1e47b185e9920a3f6433349d03fcbebfa7b18f1a67253"
+    },
     "tests/test_bootstrap_preflight.py": {
       "bytes": 6350,
       "sha256": "274ed3402a004f26b049cf0b02a36b720a76f353501bab872c6fbc3868e2e032"
@@ -514,8 +518,8 @@
       "sha256": "c1ed4da72fd168a8d429a368726f8e8ee6d87d1c866369dc88a541182fa2fec9"
     },
     "tests/test_ui_bundle.py": {
-      "bytes": 2477,
-      "sha256": "8cbd7785318ceb762a41d6ed6498bd35a28b83d85df101d9da4b056803e75ba1"
+      "bytes": 2574,
+      "sha256": "20ee4f20619884036949c31d728641005dd132295df223e057b43c6e06b925f3"
     },
     "tests/test_upload_native_ui.py": {
       "bytes": 5353,
@@ -574,8 +578,8 @@
       "sha256": "ebc43585da0e061e4e3c8bee382cc40e89357a5540ab1d46ada634f3f9a582e9"
     },
     "tools/build_native_ui.py": {
-      "bytes": 8633,
-      "sha256": "355cdc9d704c9a4f55588ec59d40d5203712d6495d2b45fdf959b23baa7dd2b4"
+      "bytes": 8773,
+      "sha256": "cfb76ba76ac65c431d1a6848d22f3ff6d75272b9d2fa73f571e712edd7eb722f"
     },
     "tools/build_native_ui_firmware.py": {
       "bytes": 16902,

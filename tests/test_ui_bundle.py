@@ -46,7 +46,9 @@ class BrowserBundle(unittest.TestCase):
             cmd=[sys.executable,str(ROOT/'tools/build_native_ui.py'),'--without-cli','--output-dir',str(target)]
             subprocess.run(cmd,check=True,stdout=subprocess.DEVNULL)
             first=(target/'switch-ui.html').read_bytes()
-            self.assertLessEqual(len(first),0x2c0000-0x26a000)
+            self.assertLessEqual(len(first),0x2b0000-0x26a000)
+            self.assertIn(b'Retry loading',first)
+            self.assertIn(b'mxlStarted',first)
             self.assertIn(b'gzip',first)
             self.assertNotRegex(first,rb'<script[^>]+src=')
             subprocess.run(cmd,check=True,stdout=subprocess.DEVNULL)

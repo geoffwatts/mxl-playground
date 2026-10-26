@@ -200,3 +200,9 @@ Add `--lldp-endpoint artifacts/lldp/endpoint/endpoint.bin` to the clean update
 builder to include the switch-side 16-neighbour cache. It requires the full
 runtime and terminal registration chain. See [LLDP](LLDP.md) for operation and
 tests, and [WSP profiles](WSP-PROFILES.md) for the incremental adapter boundary.
+
+Startup recovery uses bounded fetch/body deadlines, best-effort browser theme
+storage, and an early loading watchdog with a Retry button. Bootstrap awaits
+application initialization so failures reach its error display. These paths
+have host/browser regression checks; the intermittent iPhone trigger has not
+been reproduced directly on iOS.

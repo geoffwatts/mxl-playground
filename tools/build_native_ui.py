@@ -63,7 +63,7 @@ def bundle(entry, overrides=None):
         modules[name] = ident
         visiting.remove(name)
         if name == entry:
-            blocks.append('(async()=>{\n'+source+'\n})();')
+            blocks.append('await(async()=>{\n'+source+'\n})();')
         else:
             blocks.append('const '+ident+'=(()=>{\n'+source+'\nreturn {'+','.join(exports)+'};\n})();')
         return ident
@@ -116,7 +116,7 @@ def compressed_bootstrap(js):
  const source=await new Response(new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'))).text();
  const url=URL.createObjectURL(new Blob([source],{type:'text/javascript'}));
  try{await import(url);}finally{URL.revokeObjectURL(url);}
-}catch(error){document.querySelector('#content').textContent='Could not start switch management: '+error.message;}
+}catch(error){document.querySelector('#content').textContent='Could not start switch management: '+error.message;document.querySelector('#content').insertAdjacentHTML('beforeend','<p><button onclick="location.reload()">Retry loading</button></p>');}
 """.replace('PACKED', json.dumps(packed))
 
 
