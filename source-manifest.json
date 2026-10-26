@@ -6,8 +6,8 @@
   "captured_configuration_included": false,
   "files": {
     ".github/workflows/source-checks.yml": {
-      "bytes": 2344,
-      "sha256": "aee9876ea2b4d4bdbd0053e6f5cc004f5399fa5110db2b60c04de95509a4e896"
+      "bytes": 2419,
+      "sha256": "fcc237264ecb11f0e7099feb1dac6727ee3eca9b2974063ca192b85be684edfd"
     },
     ".gitignore": {
       "bytes": 179,
@@ -42,8 +42,8 @@
       "sha256": "53051993dc87ec0f6bb11c096e294a1ec62b1e296db52bf4c3ed91e4788042d8"
     },
     "designs/mxl-management/firmware-update.mjs": {
-      "bytes": 5009,
-      "sha256": "3b053b2e9766f9689d3645bfe15e3efd01706a235c8c724b0259183a77265af2"
+      "bytes": 6564,
+      "sha256": "611cdec190cc6e523a497dd6f00b2dfde6ac69c16d47063c564075d918adc556"
     },
     "designs/mxl-management/firmware.mjs": {
       "bytes": 1664,
@@ -174,8 +174,8 @@
       "sha256": "8f64d78943579e1c86e1170af24ed7e02ae2a246aa5c231e6b0c6f0a050fc972"
     },
     "docs/DNS-SNTP-NOTES.md": {
-      "bytes": 4155,
-      "sha256": "98c46283e6fe911cc140935206121be38df181fc0a7c35d634fcd962a509c34e"
+      "bytes": 9346,
+      "sha256": "fb9bc5d67b5ee714535d3ca7c528bc50c527f90afa1776ba3e3ca24a31891fa3"
     },
     "docs/FIRMWARE-UPDATES.md": {
       "bytes": 2626,
@@ -425,6 +425,10 @@
       "bytes": 1104,
       "sha256": "98fa4f55ccbd455fb8646fae592adea769cde56fc027b3eded1c303d0fbf6e9a"
     },
+    "firmware/sntp_recovery.S": {
+      "bytes": 1956,
+      "sha256": "0e500625595bc75b113a42176ddecd195b00bbdf5f6e332ce87288c4249287ac"
+    },
     "firmware/wsp_arithmetic.c": {
       "bytes": 944,
       "sha256": "29a35e2bcf907d3349140c028aba040aecf3052869fa05bcf2ab5864c47ba6f4"
@@ -513,6 +517,10 @@
       "bytes": 4608,
       "sha256": "551a618bee6666032247eb013d7572f0e0e7df9e1a8546d976a837dd8aca1458"
     },
+    "tests/test_sntp_recovery.py": {
+      "bytes": 1385,
+      "sha256": "87e602b5f405344c6b73505c53b4abbe5285b810b2df68c420e40b2729d543a2"
+    },
     "tests/test_source_tree.py": {
       "bytes": 3130,
       "sha256": "c1ed4da72fd168a8d429a368726f8e8ee6d87d1c866369dc88a541182fa2fec9"
@@ -582,8 +590,8 @@
       "sha256": "cfb76ba76ac65c431d1a6848d22f3ff6d75272b9d2fa73f571e712edd7eb722f"
     },
     "tools/build_native_ui_firmware.py": {
-      "bytes": 16902,
-      "sha256": "03c791d810ee2b4d67a8baacea097d13d28edcd6436946b8f70690887c55af06"
+      "bytes": 17373,
+      "sha256": "078544abe73ad86068c14157e3063a9dbe5092af32dbc21cb005d5b410855624"
     },
     "tools/build_sfp_endpoint.py": {
       "bytes": 2227,
@@ -614,8 +622,8 @@
       "sha256": "a4f8eb451819de577c11f50b90ca607b66ca98a57b27c0c02fc64d81aa90f894"
     },
     "tools/installer_image.py": {
-      "bytes": 6169,
-      "sha256": "75a265d408786fcb2ee085b78b2dabd18ade524123663c2e86b1a306cc79b2b1"
+      "bytes": 6224,
+      "sha256": "7c992277cb98ea67f6e94d715a9c7c5a8e1bf55300421121ba1a6e3338d30f58"
     },
     "tools/installer_uart.py": {
       "bytes": 3365,
@@ -660,6 +668,10 @@
     "tools/read_public_key.py": {
       "bytes": 1430,
       "sha256": "f5898c8cd9d74ec03f5a67af1d02946b090d7f1136092ffb63f6a6e0def9606f"
+    },
+    "tools/sntp_recovery.py": {
+      "bytes": 2032,
+      "sha256": "a9006116800ac0a7758d1ad6ddece854bbc1556effbe7e8db580ad59a2640c97"
     },
     "tools/spi_layout.py": {
       "bytes": 8513,

@@ -19,9 +19,24 @@ export async function validateFirmwareUpdate(input,name='image.bin'){
  // Admit only the original cleanup call or the independently decoded DNS guard.
  const hex=b=>Array.from(b,x=>x.toString(16).padStart(2,'0')).join(''),call=hex(wsp.subarray(0x56a14,0x56a1c));
  if(call!=='2220800f05409c62'&&(call!=='2220800f2c40006f'||hex(wsp.subarray(0x2c6f00,0x2c6f2a))!=='c341f120b8a9081102001f0880001811020017088000281102000f0880002020800f05409c620c70e07e'))throw Error('Unsupported DNS context cleanup patch');
+ // Normalize only the complete, exact SNTP recovery patch. The original
+ // immutable-region digest below still rejects unrelated native changes.
+ const sntpSites=[[0x248a0,'2220800f0340c801','2220800f2c400070'],[0x2171e,'2220800f0070b8dc','2220800f2c407e70'],[0x2158a,'97081000','e078e078'],[0x11a86,'dd0910a0','e078e078']];
+ const sntpPatched=sntpSites.some(([at,before])=>hex(wsp.subarray(at,at+before.length/2))!==before);
+ if(sntpPatched){
+  if(sntpSites.some(([at,,after])=>hex(wsp.subarray(at,at+after.length/2))!==after)||hex(wsp.subarray(0x2c7000,0x2c708c))!=='f1c0c340f1208c190088e0b82c000100c340f52084ebc3422c4066702220800f0340c80111081000c341f1208c194089a0ba40a9d1c0e07ec340f120b8a9c341f1206c124c716c70c3440240b011c345f1208c19c3460000d0072220800f06400cc2d507cfff13081100c342f1208c19608aa0bb60aa2020800f0240e448c341000000fa2020800f0070b8dc')throw Error('Unsupported SNTP recovery patch');
+  for(const [at,before] of sntpSites)wsp.set(Uint8Array.from(before.match(/../g),x=>parseInt(x,16)),at);
+  wsp.fill(255,0x2c7000,0x2c708c);
+ }
  const ui_sha256=sha256(html);
  const consoleHook=hex(wsp.subarray(0x2c300c,0x2c3014))==='2020800f2b400000';
- if(consoleHook&&(length>0x46000||sha256(wsp.subarray(0x2b0000,0x2b4000))!=='bb5d240444e9f007f98108ff549829de1f6b559f7c67925bf4d7f940f918f91c'))throw Error('Unsupported shared terminal extension');
+ const consoleBytes=wsp.slice(0x2b0000,0x2b4000);
+ if(hex(consoleBytes.subarray(12,20))==='2020800f2b400040'){
+  if(!consoleHook||sha256(wsp.subarray(0x2b4000,0x2c0000))!=='2d751cb5ac27c5dd7815136ab05a027553aceee68409ff8c81232ccb9e822a16'||hex(wsp.subarray(0x3c028,0x3c030))!=='2220800f2b40bc49')throw Error('Unsupported LLDP neighbour extension');
+  consoleBytes.set(Uint8Array.from('2020800f01400c65'.match(/../g),x=>parseInt(x,16)),12);
+  wsp.set(Uint8Array.from('2220800f0340b8b9'.match(/../g),x=>parseInt(x,16)),0x3c028);
+ }
+ if(consoleHook&&(length>0x46000||sha256(consoleBytes)!=='bb5d240444e9f007f98108ff549829de1f6b559f7c67925bf4d7f940f918f91c'))throw Error('Unsupported shared terminal extension');
  for(const [offset,n] of UPDATE_RANGES)wsp.fill(0,offset,offset+n);
  // Both audited builders are admitted: the original development base retains
  // old trace helpers, while the clean vendor-derived base has zeroed padding.

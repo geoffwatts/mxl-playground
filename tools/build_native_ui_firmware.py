@@ -16,6 +16,7 @@ from build_dma_trace_candidate import jump
 from verify_firmware_signatures import verify_component
 from wsp_profile import load as load_wsp_profile
 from build_dns_guard_candidate import GUARD as DNS_GUARD, CALL as DNS_CALL, PATCHED_CALL as DNS_PATCHED_CALL
+import sntp_recovery
 
 CLEAN_BASE_SHA='8fe6e6c06a6226fe37814b5c1ae0172fb771a277dda6a17d4e0a22ab467345cb'
 BASE_SHA='527f6dd536808fcfecba420ff5c391ab3a040e1615d328c04cf4fcabe87ab44f'
@@ -106,6 +107,7 @@ def build(base,html,vendor,key,jumbo=None,console=None,lldp=None):
                 raise ValueError('DNS cleanup call or reserved guard padding differs')
             wsp[0x56a14:0x56a1c]=DNS_PATCHED_CALL
             wsp[0x2c6f00:0x2c6f00+len(DNS_GUARD)]=DNS_GUARD
+            sntp_recovery.apply(wsp)
     if console is not None:
         if len(console)!=0x4000 or hashlib.sha256(console).hexdigest()!=CONSOLE_SHA:
             raise ValueError('Expected the independently decoded terminal endpoint')
@@ -166,6 +168,9 @@ def build(base,html,vendor,key,jumbo=None,console=None,lldp=None):
         regions.append((0x1559a,8,'native web constructor call'))
     if jumbo is not None and hashlib.sha256(jumbo).hexdigest()==RUNTIME_FULL_SHA:
         regions.append((0x56a14,8,'preserve resolver-owned UDP contexts during idle cleanup'))
+        regions.append((0x2c6f00,len(DNS_GUARD),'DNS lifetime guard code'))
+        regions.extend((offset,len(after),'SNTP recovery native hook') for offset,_,after in sntp_recovery.PATCHES)
+        regions.append((sntp_recovery.OFFSET,len(sntp_recovery.CODE),'SNTP configured-hostname and delayed-start shims'))
     if console is not None:
         regions.extend([(0x2b0000,0x4000,'shared UART terminal endpoint'),(0x2c300c,8,'terminal registration continuation')])
     if lldp is not None:
@@ -192,6 +197,7 @@ def build(base,html,vendor,key,jumbo=None,console=None,lldp=None):
         'management_vlan_runtime_full':jumbo is not None and hashlib.sha256(jumbo).hexdigest()==RUNTIME_FULL_SHA,
         'management_vlan_durable_writes':jumbo is not None and hashlib.sha256(jumbo).hexdigest()==RUNTIME_FULL_SHA,
         'dns_context_lifetime_guard':jumbo is not None and hashlib.sha256(jumbo).hexdigest()==RUNTIME_FULL_SHA,
+        'sntp_recovery':jumbo is not None and hashlib.sha256(jumbo).hexdigest()==RUNTIME_FULL_SHA,
         'shared_uart_terminal':console is not None,
         'lldp_neighbour_cache':lldp is not None,
         'wsp_profile':load_wsp_profile()[0]['id'],

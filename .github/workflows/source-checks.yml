@@ -33,6 +33,7 @@ jobs:
           python3 -m unittest discover -s tests -p 'test_source_tree.py'
           python3 -m unittest discover -s tests -p 'test_ui_bundle.py'
           python3 -m unittest discover -s tests -p 'test_wsp_profile.py'
+          python3 -m unittest discover -s tests -p 'test_sntp_recovery.py'
           python3 -m unittest discover -s tests -p 'test_lldp_cache.py'
           python3 -m unittest discover -s tests -p 'test_migration.py'
       - name: Frontend source tests

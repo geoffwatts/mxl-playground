@@ -8,6 +8,7 @@ from prepare_native_base import prepare
 from wsp_profile import load as load_wsp_profile
 from build_native_ui_firmware import LLDP_SHA
 from upload_native_ui import expected_ui_digest
+import sntp_recovery
 
 WSP_SIZE = 0x2d6000
 RUNTIME_SHA = '3fe9c6d5a16293ee7c28edb90389d5800293637edb5a08c98111763ac091c819'
@@ -38,6 +39,7 @@ def components(image):
 
 def canonical(wsp):
     data = bytearray(wsp)
+    sntp_recovery.normalize(data)
     for offset,size in RANGES:
         data[offset:offset+size] = bytes(size)
     return sha(data)
