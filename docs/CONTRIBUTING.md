@@ -33,6 +33,7 @@ python3 -m unittest discover -s tests -p 'test_serial_installer.py'
 python3 -m unittest discover -s tests -p 'test_upload_native_ui.py'
 python3 -m unittest discover -s tests -p 'test_clean_build.py'
 python3 -m unittest discover -s tests -p 'test_source_tree.py'
+python3 -m unittest discover -s tests -p 'test_ui_bundle.py'
 python3 -m unittest discover -s tests -p 'test_migration.py'
 node --test tests/sfp.test.mjs tests/inventory.test.mjs tests/qos.test.mjs tests/live-session.test.mjs tests/console.test.mjs tests/lag.test.mjs
 python3 tools/build_native_ui.py --without-cli --output-dir artifacts/ui

@@ -122,6 +122,14 @@ builder's input checks to accommodate a different file.
 does not migrate a V1 switch's flash layout. Read [MIGRATION.md](MIGRATION.md)
 for the separate experimental SPI migration and recovery requirements.
 
+## Browser terminal assets
+
+Pinned xterm.js/addon-fit browser assets and their MIT licences are included in
+source under `designs/mxl-management/vendor/xterm/`. The UI build verifies their
+provenance hashes; it does not install npm packages or fetch a CDN. JavaScript is
+gzip/base64 embedded and decompressed in the browser, within the existing WSP
+asset space. Use a current browser with gzip `DecompressionStream` support.
+
 ## User-supplied firmware inputs
 
 Supply the unmodified audited V2 update yourself. Its SHA-256 must be exactly

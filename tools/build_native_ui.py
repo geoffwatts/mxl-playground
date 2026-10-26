@@ -6,6 +6,8 @@ and named const/function exports. It rejects unfamiliar syntax instead of
 silently producing a partial module graph. No package downloads are required.
 """
 import argparse
+import base64
+import gzip
 import hashlib
 import json
 from pathlib import Path
@@ -69,6 +71,55 @@ def bundle(entry, overrides=None):
     return '\n'.join(blocks), list(modules)
 
 
+def gzip_bytes(data):
+    # Python 3.11/3.12 may inherit zlib's platform OS byte with mtime=0.
+    packed = bytearray(gzip.compress(data, compresslevel=9, mtime=0))
+    packed[9] = 255
+    return bytes(packed)
+
+
+def terminal_library():
+    """Use reviewed npm bytes, embedded locally; never downloads dependencies."""
+    vendor = STATIC/'vendor/xterm'
+    provenance = json.loads((vendor/'provenance.json').read_text())
+    expected = {'@xterm/xterm': '6.0.0', '@xterm/addon-fit': '0.11.0'}
+    if {r['package']: r['version'] for r in provenance} != expected:
+        raise ValueError('Unexpected terminal dependency versions')
+    for record in provenance:
+        for name, identity in record['files'].items():
+            if Path(name).name != name:
+                raise ValueError('Invalid terminal dependency path')
+            data = (vendor/name).read_bytes()
+            if len(data) != identity['bytes'] or hashlib.sha256(data).hexdigest() != identity['sha256']:
+                raise ValueError('Terminal dependency differs: '+name)
+    packed = [base64.b64encode(gzip_bytes((vendor/name).read_bytes())).decode()
+              for name in ('xterm.js', 'addon-fit.js')]
+    source = (STATIC/'console-library.mjs').read_text()
+    start = source.index("  for(const name of ['xterm.js','addon-fit.js'])")
+    end = source.index('  return {Terminal:', start)
+    embedded = """  if(typeof DecompressionStream==='undefined')throw Error('This terminal requires a browser with gzip DecompressionStream support');
+  for(const packed of PACKED){
+   const bytes=Uint8Array.from(atob(packed),c=>c.charCodeAt(0));
+   const text=await new Response(new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'))).text();
+   const url=URL.createObjectURL(new Blob([text],{type:'text/javascript'}));
+   try{await import(url);}finally{URL.revokeObjectURL(url);}
+  }
+""".replace('PACKED', json.dumps(packed))
+    return source[:start]+embedded+source[end:]
+
+
+def compressed_bootstrap(js):
+    packed = base64.b64encode(gzip_bytes(js.encode())).decode()
+    return """try{
+ if(typeof DecompressionStream==='undefined')throw Error('Use a current browser with gzip DecompressionStream support');
+ const bytes=Uint8Array.from(atob(PACKED),c=>c.charCodeAt(0));
+ const source=await new Response(new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'))).text();
+ const url=URL.createObjectURL(new Blob([source],{type:'text/javascript'}));
+ try{await import(url);}finally{URL.revokeObjectURL(url);}
+}catch(error){document.querySelector('#content').textContent='Could not start switch management: '+error.message;}
+""".replace('PACKED', json.dumps(packed))
+
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--without-cli',action='store_true',help='Build without private extracted vendor CLI help')
@@ -76,12 +127,12 @@ def main():
     args=parser.parse_args()
     meta=metadata(not args.without_cli)
     if not args.without_cli:(STATIC/'native-metadata.mjs').write_text(meta)
-    js, modules = bundle('live-app.mjs',{'native-metadata.mjs':meta})
+    js, modules = bundle('live-app.mjs',{'native-metadata.mjs':meta,'console-library.mjs':terminal_library()})
     output=args.output_dir
     project_license=(ROOT/'LICENSE').read_text()
     if '*/' in project_license:raise ValueError('Unexpected licence comment terminator')
     js='/*\n'+project_license+'\n*/\n'+js
-    css = '\n'.join((STATIC/name).read_text() for name in ['rtl-base.css','styles.css','live.css'])
+    css = '\n'.join((STATIC/name).read_text() for name in ['rtl-base.css','styles.css','live.css','vendor/xterm/xterm.css'])
     if '</style' in css.lower():
         raise ValueError('Unexpected style terminator')
     html = (STATIC/'live.html').read_text()
@@ -95,7 +146,7 @@ def main():
     html=html.replace('href="LICENSE-RTLPlayground"','href="data:text/plain;charset=utf-8,'+quote(license_text,safe='')+'" download="LICENSE-RTLPlayground.txt"')
     html=html.replace('Connecting to the management service…','Connecting to the switch…')
     html=html.replace('<script type="module" src="live-app.mjs"></script>',
-        '<script type="module">\n'+js.replace('</script','<\\/script')+'\n</script>')
+        '<script type="module">\n'+compressed_bootstrap(js)+'\n</script>')
     if re.search(r'<(?:script[^>]+src|link[^>]+rel="stylesheet")',html):
         raise ValueError('Standalone build retains external assets')
     raw=html.encode()
@@ -104,6 +155,8 @@ def main():
     (output/'switch-ui.js').write_text(js)
     manifest={'cli_reference_included':not args.without_cli,'format':'mxl-native-ui/v1','target_firmware':'2.0.0.4','bytes':len(raw),
               'sha256':hashlib.sha256(raw).hexdigest(),'modules':modules,
+              'javascript_encoding':'gzip-base64; browser decompression',
+              'terminal_libraries':{'@xterm/xterm':'6.0.0','@xterm/addon-fit':'0.11.0'},
               'same_origin_native_requests':True,'requires_python_on_switch':False,
               'flash_image':False,'inventory_persistence':'switch NVS when native endpoint is installed; explicit browser-local fallback on older builds'}
     (output/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')

@@ -60,7 +60,8 @@ web installation below.
 - **A switch with an identity.** Give it a name, location and contact. The name
   is the homepage title and is also used for LLDP System Name.
 - **The real shell, in your browser.** A shared Zephyr terminal with native
-  commands, history and completion, behind an explicit flash/RAM warning.
+  commands, history, completion, colours and scrollback. Type directly into the
+  expandable xterm.js pane, behind an explicit flash/RAM warning.
 - **Management that fits the job.** Management-VLAN controls with timed
   rollback, jumbo-frame controls, LLDP, STP, aggregation, mirroring, multicast,
   QoS, firmware export and checked web updates.
