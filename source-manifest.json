@@ -18,8 +18,8 @@
       "sha256": "3921800b801e4f2b8de5fc1c1e5f2d90d055f76b3f9828965917e40946aaf90c"
     },
     "README.md": {
-      "bytes": 8751,
-      "sha256": "f2df1990e014dbd67c31af93320e2391f0c71427a25e9c8d7582e2ec89f8ded4"
+      "bytes": 10269,
+      "sha256": "bf30caf37edc28269d37b8704e115ddeac6515a3a4b8ad28f4c8ab1db7fc28dc"
     },
     "designs/mxl-management/LICENSE-RTLPlayground": {
       "bytes": 1087,
@@ -154,8 +154,8 @@
       "sha256": "d7aa93316eb6b8d8f2aef3e688179337248f8b0f7b6d55d4482135506a906852"
     },
     "docs/MIGRATION.md": {
-      "bytes": 7228,
-      "sha256": "cb9e77a56330d707235e45b264f65ebd3aa8aed75b52cc40d9b7f6ba23c591d6"
+      "bytes": 7587,
+      "sha256": "9b0a112c3e43431cdaadb60418914e37e282dfa99d5589d54ba71c7971d8020d"
     },
     "docs/NATIVE-WRITES.md": {
       "bytes": 3690,

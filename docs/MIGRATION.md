@@ -23,7 +23,11 @@ Both WSP slots grow in the V2 map, moving the GPHY and persistent areas. The
 external flash contains the A700 partition tag; the WSP also contains a compiled
 default map. The migration builder requires the stock maps to agree and derives
 the destination from the V2 compiled map. Merely copying V2 bytes into an old
-WSP slot does not perform this migration.
+WSP slot does not perform this migration. The stock firmware's web updater does
+not migrate this partition table. The demonstrated V1 → V2 procedure therefore
+requires an external SPI programmer and clip to rewrite the full device-specific
+flash image; if in-circuit writes are unreliable, the chip must be isolated or
+removed. This is separate from later custom-WSP updates over the web interface.
 
 The boot area stays at 0..0xa000 and its executable bytes remain unchanged. The
 builder updates its partition tag, places the vendor WSP/GPHY in both new slot

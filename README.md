@@ -12,7 +12,8 @@ our researched **MaxLinear MxL862xx / WSP** platform. The interface runs on the
 switch's existing web server. Daily management needs only a browser.
 
 [Build it](docs/BUILD.md) · [Install it](docs/SERIAL-INSTALLER.md) ·
-[Recovery](docs/RECOVERY.md) · [Roadmap](docs/ROADMAP.md)
+[V1 → V2 migration](docs/MIGRATION.md) · [Recovery](docs/RECOVERY.md) ·
+[Roadmap](docs/ROADMAP.md)
 
 ![MxL Playground overview: named switch, live port map and device status](docs/images/overview.png)
 
@@ -23,6 +24,30 @@ switch's existing web server. Daily management needs only a browser.
 > **Only flash if you have a compatible SPI programmer, or can obtain one
 > quickly—for example overnight from Amazon where available.** The UART shell
 > is part of WSP; a broken WSP can also remove serial recovery.
+
+## Started with 1.x firmware? We upgraded ours to 2.x.
+
+This project's GoodTop ZX310S-8T2XS originally ran **1.0.0.6**. We successfully
+migrated that same switch to the factory **2.0.0.4** firmware, then built
+MxL Playground on that V2 baseline.
+
+**This requires changing the SPI flash partition table, not just uploading newer
+firmware.** V2 needs larger WSP slots and moves the GPHY and persistent-data
+partitions. The stock firmware's web updater cannot perform that layout migration;
+uploading a V2 update to a stock V1 switch is not an upgrade path.
+
+Our demonstrated migration uses an **external SPI programmer and clip** to read
+the complete flash, build a device-specific image with the V2 partition table
+and firmware, and reflash it. Unreliable in-circuit programming may require
+isolating or removing the flash chip. A serial cable alone does not replace
+this SPI migration procedure.
+
+**[Read the V1 → V2 migration guide](docs/MIGRATION.md)** for the layout changes,
+backup/build/programming steps and recovery requirements. The migration worked
+on our switch; the current builder is still restricted to its original backup,
+so it is not yet a general installer for other owners' units. A switch already
+on the supported V2 layout can proceed to the separate serial bootstrap and
+web installation below.
 
 ## What makes it worth opening the case?
 
@@ -121,7 +146,9 @@ uploading the V2 update alone does not do that.
 ## Installation path
 
 1. Make two matching full SPI backups of this unit and confirm chip voltage,
-   layout and UART access. Keep backups private.
+   layout and UART access. Keep backups private. **Starting on V1? Complete the
+   [SPI layout migration](docs/MIGRATION.md) first**; the stock web updater cannot
+   convert the V1 partition table to V2.
 2. Supply the exact factory image locally. Our patcher checks its SHA-256, copies
    vendor bytes from your input, applies the audited patches and inserts our
    UI/extensions. Generated firmware stays local. See [BUILD.md](docs/BUILD.md).
