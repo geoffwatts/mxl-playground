@@ -55,17 +55,17 @@ uploading the V2 update alone does not do that.
    layout and UART access. Keep backups private.
 2. Supply the exact factory image locally. Our patcher checks its SHA-256, copies
    vendor bytes from your input, applies the audited patches and inserts our
-   UI/extensions. Generated firmware stays local. See [BUILD.md](BUILD.md).
+   UI/extensions. Generated firmware stays local. See [BUILD.md](docs/BUILD.md).
 3. On the supported V2 layout, bootstrap over UART by changing the external
    boot-configuration record. Executable bootloader bytes are preserved. The
    matching WSP relocates a DMA helper that overlaps temporary boot RAM. See
-   [INSTALL.md](INSTALL.md). This coordinated first install remains experimental;
-   the [serial installer](SERIAL-INSTALLER.md) defaults to a read-only dry run;
+   [INSTALL.md](docs/INSTALL.md). This coordinated first install remains experimental;
+   the [serial installer](docs/SERIAL-INSTALLER.md) defaults to a read-only dry run;
    stock-to-custom hardware rehearsal remains open.
 4. Transfer WSP/GPHY over the native web updater. After bootstrap, routine updates
    use the Firmware page or supplied uploader without repeating the serial patch.
    Verify UART startup and the served UI after each update.
-5. Keep recovery available. Read [RECOVERY.md](RECOVERY.md) before writing.
+5. Keep recovery available. Read [RECOVERY.md](docs/RECOVERY.md) before writing.
    Retain the boot-record patch for custom and supported factory updates.
 
 The default serial operation changes a small boot record and transfers the image
@@ -76,17 +76,17 @@ a demonstrated automatic recovery guarantee.
 
 ## Documentation
 
-- [Building from source](BUILD.md)
-- [Serial admission, bootstrap and web upload](INSTALL.md)
-- [Experimental serial installer and serial-only WSP option](SERIAL-INSTALLER.md)
-- [Recovery, factory defaults and factory firmware](RECOVERY.md)
-- [Original V1 → factory V2 migration experiment](MIGRATION.md)
-- [Firmware page](FIRMWARE-UPDATES.md), [management VLAN](MANAGEMENT-VLAN.md)
-  and [browser terminal](TERMINAL.md)
-- [Release gates](RELEASE-PLAN.md), [roadmap](ROADMAP.md) and
-  [publication review](REVIEW.md)
-- [Contributing and offline checks](CONTRIBUTING.md)
-- [GitHub preview and publication path](GITHUB.md)
+- [Building from source](docs/BUILD.md)
+- [Serial admission, bootstrap and web upload](docs/INSTALL.md)
+- [Experimental serial installer and serial-only WSP option](docs/SERIAL-INSTALLER.md)
+- [Recovery, factory defaults and factory firmware](docs/RECOVERY.md)
+- [Original V1 → factory V2 migration experiment](docs/MIGRATION.md)
+- [Firmware page](docs/FIRMWARE-UPDATES.md), [management VLAN](docs/MANAGEMENT-VLAN.md)
+  and [browser terminal](docs/TERMINAL.md)
+- [Release gates](docs/RELEASE-PLAN.md), [roadmap](docs/ROADMAP.md) and
+  [publication review](docs/REVIEW.md)
+- [Contributing and offline checks](docs/CONTRIBUTING.md)
+- [GitHub preview and publication path](docs/GITHUB.md)
 
 ## Licence and credits
 
@@ -94,4 +94,4 @@ New code is [MIT licensed](LICENSE). RTLPlayground-derived styling retains its
 [original MIT notice](designs/mxl-management/LICENSE-RTLPlayground).
 [REA](https://github.com/morluto/rea), Ghidra, Sony ARCv2 support and
 [sks32kmon](https://github.com/geoffwatts/sks32kmon) informed the investigation.
-See [THIRD_PARTY.md](THIRD_PARTY.md). Our licence does not relicense vendor code.
+See [THIRD_PARTY.md](docs/THIRD_PARTY.md). Our licence does not relicense vendor code.

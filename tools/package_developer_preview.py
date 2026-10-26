@@ -49,6 +49,9 @@ FILES.update({p:p for p in ['tools/install_serial.py','tools/installer_image.py'
 FILES['SERIAL-INSTALLER.md']='docs/SERIAL-INSTALLER.md'
 FILES.update({p:p for p in ['tools/check_source_tree.py','.github/workflows/source-checks.yml']})
 FILES['GITHUB.md']='docs/GITHUB.md'
+# Keep GitHub's root focused on README and source directories.
+FILES={('docs/'+target if target.endswith('.md') and target!='README.md' else target):source
+       for target,source in FILES.items()}
 DENY=[re.compile(rb'-----BEGIN (?:RSA |EC |OPENSSH |ENCRYPTED )?PRIVATE KEY-----'),re.compile(rb'(?i)session=[a-f0-9]{24,}'),re.compile(rb'(?i)(?:password|passwd)\s*[:=]\s*[\"\'][^\"\'\r\n]{8,}[\"\']')]
 
 

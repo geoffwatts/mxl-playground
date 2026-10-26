@@ -13,89 +13,13 @@
       "bytes": 179,
       "sha256": "a5ad94879a5c5a289aeabd5eb77e6087e2580fc94362e53b69d8aa34f8d4171f"
     },
-    "BOOTSTRAP-NOTES.md": {
-      "bytes": 7306,
-      "sha256": "77c9278c3dff9267236142c762e4f8853c9094f1e9c7a3ad02d1b255cd1b2e3c"
-    },
-    "BROWSER-REVIEW.md": {
-      "bytes": 4533,
-      "sha256": "903a72fc1770965c0206ba053fadd2064d77816a415d1d58c0f0b97a957b6ce8"
-    },
-    "BUILD.md": {
-      "bytes": 6620,
-      "sha256": "586cde1ccfc546e96c7307c028dedb167251848e04dcb3fcb3cd86875a8175d8"
-    },
-    "CONTRIBUTING.md": {
-      "bytes": 1525,
-      "sha256": "c2036a3175057d7db236606a76ff0869727f2dfdd8bcdc8f921519cbd81d66a0"
-    },
-    "DNS-SNTP-NOTES.md": {
-      "bytes": 4155,
-      "sha256": "98c46283e6fe911cc140935206121be38df181fc0a7c35d634fcd962a509c34e"
-    },
-    "FIRMWARE-UPDATES.md": {
-      "bytes": 2626,
-      "sha256": "51f54f5507611d831c18e2d1da1864860c1490b4a5a32af18ed1f943b4164be4"
-    },
-    "GITHUB.md": {
-      "bytes": 2045,
-      "sha256": "c174766f3f7d4525c09ca359a4e81dacd915162c31f6c25d89bb0b86c5dbefb3"
-    },
-    "INSTALL.md": {
-      "bytes": 8283,
-      "sha256": "1fdacc9ab9de6f7563f8e1d92c47037a2acad9b2876d16a8d7101e9d432867af"
-    },
     "LICENSE": {
       "bytes": 1089,
       "sha256": "3921800b801e4f2b8de5fc1c1e5f2d90d055f76b3f9828965917e40946aaf90c"
     },
-    "MANAGEMENT-VLAN.md": {
-      "bytes": 4868,
-      "sha256": "d7aa93316eb6b8d8f2aef3e688179337248f8b0f7b6d55d4482135506a906852"
-    },
-    "MIGRATION.md": {
-      "bytes": 7228,
-      "sha256": "cb9e77a56330d707235e45b264f65ebd3aa8aed75b52cc40d9b7f6ba23c591d6"
-    },
-    "NATIVE-WRITES.md": {
-      "bytes": 3690,
-      "sha256": "31e7b8b23dda0d6e5477ba738438bfaa5c16a34de82dba3a03a401f90366af24"
-    },
     "README.md": {
-      "bytes": 5337,
-      "sha256": "a2e30243e18fa95e60622dfeedbf045c10596c0e5fa26c6c59b73da2b1787478"
-    },
-    "RECOVERY.md": {
-      "bytes": 3560,
-      "sha256": "7bdeaa7ee889200437560f2380917dc87705a753b971483f27e9c72450681962"
-    },
-    "RELEASE-PLAN.md": {
-      "bytes": 5035,
-      "sha256": "189a7b49c5217b09db8c0e6a79befa6c868f36b6cb797d6dd3982675c798ad9b"
-    },
-    "REVIEW.md": {
-      "bytes": 4181,
-      "sha256": "02ee4bee9bae73b78739892c41869a5534759c9ab0baf1c401ebfb601d546bb3"
-    },
-    "ROADMAP.md": {
-      "bytes": 1705,
-      "sha256": "cf44b948cde2647c01766e5058f7885fda2acacf9e4d73a9eb83ac9310fe7438"
-    },
-    "SERIAL-INSTALLER.md": {
-      "bytes": 7459,
-      "sha256": "56d03bd54f4548ccd2af808e4f720b07897be40d302e7d4035f2276927aa6c64"
-    },
-    "SFP-NOTES.md": {
-      "bytes": 8160,
-      "sha256": "8d525d26e19d30d163f2994dcda2ff17a5ea970a85f1a83c8e45dd00ba237642"
-    },
-    "TERMINAL.md": {
-      "bytes": 3555,
-      "sha256": "407ea1c54efd097bc4a98b61fa6ef49a37d43b8977e52eaf46adff7312058228"
-    },
-    "THIRD_PARTY.md": {
-      "bytes": 1192,
-      "sha256": "9c85f4ce4999407ad0e6d8e8b650885b164e27a17662558c70b052137cb3e353"
+      "bytes": 5427,
+      "sha256": "1de77f0d1e3c78ac801d505937ad6180d19c6168b0e4667bca0efd18f72ac648"
     },
     "designs/mxl-management/LICENSE-RTLPlayground": {
       "bytes": 1087,
@@ -192,6 +116,82 @@
     "designs/mxl-management/ui.mjs": {
       "bytes": 6601,
       "sha256": "11bfc468ff5966bbedeb584f51f29ef9b23b557f737b00d5bc2aa3d210ed134c"
+    },
+    "docs/BOOTSTRAP-NOTES.md": {
+      "bytes": 7306,
+      "sha256": "77c9278c3dff9267236142c762e4f8853c9094f1e9c7a3ad02d1b255cd1b2e3c"
+    },
+    "docs/BROWSER-REVIEW.md": {
+      "bytes": 4533,
+      "sha256": "903a72fc1770965c0206ba053fadd2064d77816a415d1d58c0f0b97a957b6ce8"
+    },
+    "docs/BUILD.md": {
+      "bytes": 6620,
+      "sha256": "586cde1ccfc546e96c7307c028dedb167251848e04dcb3fcb3cd86875a8175d8"
+    },
+    "docs/CONTRIBUTING.md": {
+      "bytes": 1525,
+      "sha256": "c2036a3175057d7db236606a76ff0869727f2dfdd8bcdc8f921519cbd81d66a0"
+    },
+    "docs/DNS-SNTP-NOTES.md": {
+      "bytes": 4155,
+      "sha256": "98c46283e6fe911cc140935206121be38df181fc0a7c35d634fcd962a509c34e"
+    },
+    "docs/FIRMWARE-UPDATES.md": {
+      "bytes": 2626,
+      "sha256": "51f54f5507611d831c18e2d1da1864860c1490b4a5a32af18ed1f943b4164be4"
+    },
+    "docs/GITHUB.md": {
+      "bytes": 2045,
+      "sha256": "c174766f3f7d4525c09ca359a4e81dacd915162c31f6c25d89bb0b86c5dbefb3"
+    },
+    "docs/INSTALL.md": {
+      "bytes": 8283,
+      "sha256": "1fdacc9ab9de6f7563f8e1d92c47037a2acad9b2876d16a8d7101e9d432867af"
+    },
+    "docs/MANAGEMENT-VLAN.md": {
+      "bytes": 4868,
+      "sha256": "d7aa93316eb6b8d8f2aef3e688179337248f8b0f7b6d55d4482135506a906852"
+    },
+    "docs/MIGRATION.md": {
+      "bytes": 7228,
+      "sha256": "cb9e77a56330d707235e45b264f65ebd3aa8aed75b52cc40d9b7f6ba23c591d6"
+    },
+    "docs/NATIVE-WRITES.md": {
+      "bytes": 3690,
+      "sha256": "31e7b8b23dda0d6e5477ba738438bfaa5c16a34de82dba3a03a401f90366af24"
+    },
+    "docs/RECOVERY.md": {
+      "bytes": 3560,
+      "sha256": "7bdeaa7ee889200437560f2380917dc87705a753b971483f27e9c72450681962"
+    },
+    "docs/RELEASE-PLAN.md": {
+      "bytes": 5035,
+      "sha256": "189a7b49c5217b09db8c0e6a79befa6c868f36b6cb797d6dd3982675c798ad9b"
+    },
+    "docs/REVIEW.md": {
+      "bytes": 4181,
+      "sha256": "02ee4bee9bae73b78739892c41869a5534759c9ab0baf1c401ebfb601d546bb3"
+    },
+    "docs/ROADMAP.md": {
+      "bytes": 1705,
+      "sha256": "cf44b948cde2647c01766e5058f7885fda2acacf9e4d73a9eb83ac9310fe7438"
+    },
+    "docs/SERIAL-INSTALLER.md": {
+      "bytes": 7459,
+      "sha256": "56d03bd54f4548ccd2af808e4f720b07897be40d302e7d4035f2276927aa6c64"
+    },
+    "docs/SFP-NOTES.md": {
+      "bytes": 8160,
+      "sha256": "8d525d26e19d30d163f2994dcda2ff17a5ea970a85f1a83c8e45dd00ba237642"
+    },
+    "docs/TERMINAL.md": {
+      "bytes": 3555,
+      "sha256": "407ea1c54efd097bc4a98b61fa6ef49a37d43b8977e52eaf46adff7312058228"
+    },
+    "docs/THIRD_PARTY.md": {
+      "bytes": 1192,
+      "sha256": "9c85f4ce4999407ad0e6d8e8b650885b164e27a17662558c70b052137cb3e353"
     },
     "firmware/console_native.c": {
       "bytes": 6907,
@@ -490,8 +490,8 @@
       "sha256": "e7c3f12c4eaeafc36d4ab13bb488e552a7e139357d5e2cbf74f6664682afbf8a"
     },
     "tools/package_developer_preview.py": {
-      "bytes": 7478,
-      "sha256": "b1112209f825fc8f31e4e8d9cdd6e1a7c75138fbefc8b1e9f8f6c050e34980dc"
+      "bytes": 7677,
+      "sha256": "03dae83d208da8aff2fc9e3cb1c471f7bdc998efd8605f2096515e1b3772aabc"
     },
     "tools/prepare_github_repo.py": {
       "bytes": 3643,
