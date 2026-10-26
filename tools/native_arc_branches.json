@@ -1,0 +1,230 @@
+{
+  "402c014c": {
+    "hex": "05f2",
+    "source": "beq_s 0x402c0156"
+  },
+  "402c015a": {
+    "hex": "06f4",
+    "source": "bne_s 0x402c0164"
+  },
+  "402c0178": {
+    "hex": "05f2",
+    "source": "beq_s 0x402c0182"
+  },
+  "402c0188": {
+    "hex": "05f2",
+    "source": "beq_s 0x402c0192"
+  },
+  "402c0198": {
+    "hex": "05f2",
+    "source": "beq_s 0x402c01a2"
+  },
+  "402c01b2": {
+    "hex": "06f2",
+    "source": "beq_s 0x402c01bc"
+  },
+  "402c01ce": {
+    "hex": "46f7",
+    "source": "bhs_s 0x402c01d8"
+  },
+  "402c01e2": {
+    "hex": "c6f7",
+    "source": "bls_s 0x402c01ec"
+  },
+  "402c0206": {
+    "hex": "06f2",
+    "source": "beq_s 0x402c0210"
+  },
+  "402c0222": {
+    "hex": "06f2",
+    "source": "beq_s 0x402c022c"
+  },
+  "402c1132": {
+    "hex": "06f2",
+    "source": "beq_s 0x402c113c"
+  },
+  "402c11c0": {
+    "hex": "05f4",
+    "source": "bne_s 0x402c11ca"
+  },
+  "402c11cc": {
+    "hex": "05f4",
+    "source": "bne_s 0x402c11d6"
+  },
+  "402c11d8": {
+    "hex": "05f4",
+    "source": "bne_s 0x402c11e2"
+  },
+  "402c1218": {
+    "hex": "05f4",
+    "source": "bne_s 0x402c1222"
+  },
+  "402c129c": {
+    "hex": "05f2",
+    "source": "beq_s 0x402c12a6"
+  },
+  "402c12c6": {
+    "hex": "06f2",
+    "source": "beq_s 0x402c12d0"
+  },
+  "402c12e8": {
+    "hex": "05f2",
+    "source": "beq_s 0x402c12f2"
+  },
+  "402c1326": {
+    "hex": "06f2",
+    "source": "beq_s 0x402c1330"
+  },
+  "402c1338": {
+    "hex": "05f2",
+    "source": "beq_s 0x402c1342"
+  },
+  "402c1362": {
+    "hex": "06f2",
+    "source": "beq_s 0x402c136c"
+  },
+  "402c136c": {
+    "hex": "05f2",
+    "source": "beq_s 0x402c1376"
+  },
+  "402c1384": {
+    "hex": "05f2",
+    "source": "beq_s 0x402c138e"
+  },
+  "402c1412": {
+    "hex": "06f4",
+    "source": "bne_s 0x402c141c"
+  },
+  "402c141e": {
+    "hex": "06f4",
+    "source": "bne_s 0x402c1428"
+  },
+  "402c142a": {
+    "hex": "06f4",
+    "source": "bne_s 0x402c1434"
+  },
+  "402c1454": {
+    "hex": "05f2",
+    "source": "beq_s 0x402c145e"
+  },
+  "402c146a": {
+    "hex": "06f4",
+    "source": "bne_s 0x402c1474"
+  },
+  "402c1492": {
+    "hex": "06f2",
+    "source": "beq_s 0x402c149c"
+  },
+  "402c14a4": {
+    "hex": "05f2",
+    "source": "beq_s 0x402c14ae"
+  },
+  "402c14ee": {
+    "hex": "06f2",
+    "source": "beq_s 0x402c14f8"
+  },
+  "402c1518": {
+    "hex": "05f2",
+    "source": "beq_s 0x402c1522"
+  },
+  "402c153a": {
+    "hex": "06f2",
+    "source": "beq_s 0x402c1544"
+  },
+  "402c154a": {
+    "hex": "06f4",
+    "source": "bne_s 0x402c1554"
+  },
+  "402c1556": {
+    "hex": "06f4",
+    "source": "bne_s 0x402c1560"
+  },
+  "402c1562": {
+    "hex": "06f4",
+    "source": "bne_s 0x402c156c"
+  },
+  "402c15a2": {
+    "hex": "06f4",
+    "source": "bne_s 0x402c15ac"
+  },
+  "402c15be": {
+    "hex": "06f2",
+    "source": "beq_s 0x402c15c8"
+  },
+  "402c1672": {
+    "hex": "06f2",
+    "source": "beq_s 0x402c167c"
+  },
+  "402c16b0": {
+    "hex": "05f2",
+    "source": "beq_s 0x402c16ba"
+  },
+  "402c16c2": {
+    "hex": "06f2",
+    "source": "beq_s 0x402c16cc"
+  },
+  "402c16ec": {
+    "hex": "05f2",
+    "source": "beq_s 0x402c16f6"
+  },
+  "402c170e": {
+    "hex": "06f2",
+    "source": "beq_s 0x402c1718"
+  },
+  "402c17de": {
+    "hex": "06f2",
+    "source": "beq_s 0x402c17e8"
+  },
+  "402c181c": {
+    "hex": "05f2",
+    "source": "beq_s 0x402c1826"
+  },
+  "402c182e": {
+    "hex": "06f2",
+    "source": "beq_s 0x402c1838"
+  },
+  "402c2142": {
+    "hex": "06f4",
+    "source": "bne_s 0x402c214c"
+  },
+  "402c2160": {
+    "hex": "05f2",
+    "source": "beq_s 0x402c216a"
+  },
+  "402c2176": {
+    "hex": "06f2",
+    "source": "beq_s 0x402c2180"
+  },
+  "402c2186": {
+    "hex": "06f2",
+    "source": "beq_s 0x402c2190"
+  },
+  "402c21b6": {
+    "hex": "06f2",
+    "source": "beq_s 0x402c21c0"
+  },
+  "402c21d0": {
+    "hex": "05f2",
+    "source": "beq_s 0x402c21da"
+  },
+  "402c21ea": {
+    "hex": "06f2",
+    "source": "beq_s 0x402c21f4"
+  },
+  "402c2216": {
+    "hex": "06f2",
+    "source": "beq_s 0x402c2220"
+  },
+  "402c2286": {
+    "hex": "06f2",
+    "source": "beq_s 0x402c2290"
+  },
+  "402c22b2": {
+    "hex": "06f2",
+    "source": "beq_s 0x402c22bc"
+  },
+  "402c2322": {
+    "hex": "06f2",
+    "source": "beq_s 0x402c232c"
+  }
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!-- Native and development management UI; same visual language and real device contracts. -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Switch management</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="rtl-base.css">
+  <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="live.css">
+</head>
+<body>
+  <a class="skip" href="#content">Skip to content</a>
+  <nav id="nav" aria-label="Switch navigation">
+    <div id="brand"><svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke-width="1.7" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"></rect><path d="M6 10v4m4-4v4m4-4v4m4-4v4"></path></svg><div><strong>Switch</strong><small>Web Smart switch</small></div></div>
+    <div id="navlist"></div>
+    <div id="navfoot"><span id="connectionState">Disconnected</span><br><span id="sidebarVersion">Firmware — · —</span><a href="LICENSE-RTLPlayground" class="license">Based on RTLPlayground ↗</a></div>
+  </nav>
+  <div id="wrap">
+    <div class="modebar"><span><strong>Live switch management</strong><span class="mode-description" id="liveAddress"></span></span><div class="mode-tools"><span id="pollState">Manual refresh</span><button class="ctl" id="connect">Connect</button></div></div>
+    <header id="top"><button id="burger" class="ctl" aria-label="Toggle navigation">☰</button><span id="ttitle">Dashboard</span><div id="strip" aria-label="Front-panel ports"></div><button class="ctl" id="refresh" aria-label="Refresh displayed data">Refresh</button><button class="ctl" id="theme" aria-label="Toggle light and dark theme">◐</button></header>
+    <div class="configbar"><span id="configStatus" role="status">Running configuration matches startup</span><div><button class="ctl pri" id="save" disabled>Save configuration</button></div></div>
+    <aside id="sessionNotice" class="session-notice" hidden role="status">Your session ended. Your edits are still here. <button type="button" class="ctl" data-action="reconnect">Sign in again</button></aside>
+    <main id="content" tabindex="-1" data-screen-label="Switch management"><div class="card loading">Connecting to the management service…</div></main>
+    <footer class="pagefoot"><span id="sourceLabel"></span><span>8 × 2.5GbE + 2 × 10G SFP+</span></footer>
+  </div>
+  <div id="toasts" aria-live="polite"></div>
+  <dialog id="dialog"><div class="dialog-shell"><header><h2 id="dialogTitle"></h2><button type="button" class="iconbutton" data-action="close-modal" value="cancel" aria-label="Close dialog">×</button></header><div id="dialogBody"></div><footer id="dialogFooter"></footer></div></dialog>
+  <input type="file" id="importFile" accept="application/json,.json" hidden>
+  <script type="module" src="live-app.mjs"></script>
+</body>
+</html>

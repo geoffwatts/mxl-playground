@@ -1,0 +1,2 @@
+# Tested signature-verification dependency; no Python dependency for UI/endpoint assembly.
+cryptography==50.0.2

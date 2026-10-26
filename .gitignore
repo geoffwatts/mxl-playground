@@ -1,0 +1,16 @@
+upstream/
+artifacts/
+__pycache__/
+*.pyc
+
+# Device backups/captures must never enter a source publication.
+*.bin
+*.log
+.DS_Store
+IMSProg/
+input/
+.venv/
+*.pcap
+*.pcapng
+*.pem
+*.key

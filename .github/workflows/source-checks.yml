@@ -1,0 +1,46 @@
+name: Source checks
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+      - name: Verify publication manifest and tracked files
+        run: python3 tools/check_source_tree.py --git
+      - name: Python admission, UART, uploader and publication tests
+        run: |
+          python3 -m unittest discover -s tests -p 'test_public_key.py'
+          python3 -m unittest discover -s tests -p 'test_bootstrap_preflight.py'
+          python3 -m unittest discover -s tests -p 'test_serial_installer.py'
+          python3 -m unittest discover -s tests -p 'test_upload_native_ui.py'
+          python3 -m unittest discover -s tests -p 'test_clean_build.py'
+          python3 -m unittest discover -s tests -p 'test_publication.py'
+      - name: Frontend source tests
+        run: node --test tests/sfp.test.mjs tests/inventory.test.mjs tests/qos.test.mjs tests/live-session.test.mjs tests/console.test.mjs
+      - name: Reproduce UI and instruction-plan extensions without vendor files
+        run: |
+          python3 tools/build_native_ui.py --without-cli --output-dir artifacts/ui
+          python3 tools/prepare_jumbo_endpoint.py
+          python3 tools/build_jumbo_endpoint.py
+          python3 tools/prepare_sfp_endpoint.py
+          python3 tools/build_sfp_endpoint.py
+          python3 tools/prepare_inventory_endpoint.py
+          python3 tools/build_inventory_endpoint.py
+      - name: Reproduce source archive
+        run: |
+          python3 tools/package_developer_preview.py
+          python3 tools/prepare_github_repo.py --output-dir artifacts/ci-source-review

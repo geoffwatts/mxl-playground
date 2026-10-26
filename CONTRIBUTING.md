@@ -1,0 +1,30 @@
+# Contributing
+
+Use the exact supported baseline in README.md and the limits in INSTALL.md.
+Keep other-board investigations separate; shared names or silicon do not establish
+compatibility.
+
+Do not commit firmware, extracted vendor assets/help, device backups, EEPROM,
+configuration, UART logs, credentials or private keys. Generated output belongs
+under `artifacts/` and private inputs under `input/`. Public hashes, our own
+patches and synthetic tests can be included.
+
+## Offline source checks
+
+```sh
+python3 -m unittest discover -s tests -p 'test_public_key.py'
+python3 -m unittest discover -s tests -p 'test_bootstrap_preflight.py'
+python3 -m unittest discover -s tests -p 'test_serial_installer.py'
+python3 -m unittest discover -s tests -p 'test_upload_native_ui.py'
+python3 -m unittest discover -s tests -p 'test_clean_build.py'
+node --test tests/sfp.test.mjs tests/inventory.test.mjs tests/qos.test.mjs tests/live-session.test.mjs tests/console.test.mjs
+python3 tools/build_native_ui.py --without-cli --output-dir artifacts/ui
+```
+
+Tests needing a privately supplied factory image skip when absent. A skip is not
+firmware validation. These commands do not access a switch. Compiled extensions
+also need the ARC toolchain in BUILD.md. Do not run hardware writes in normal CI.
+
+Changed ARC instructions need independent decoding and hardware checks. State
+what evidence establishes: readback, persistence, boot, forwarding and recovery
+are separate tests. Report sanitized errors and target versions, not raw captures.

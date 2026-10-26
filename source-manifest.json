@@ -1,0 +1,542 @@
+{
+  "format": "mxl-source-review/v1",
+  "status": "LOCAL REVIEW CANDIDATE; NOT PUBLISHED",
+  "licence_for_new_source": "MIT",
+  "firmware_included": false,
+  "captured_configuration_included": false,
+  "files": {
+    ".github/workflows/source-checks.yml": {
+      "bytes": 2065,
+      "sha256": "cddeab35f383d2db8a8aa8bcd5b2319e704588490a399448b639cae71144a407"
+    },
+    ".gitignore": {
+      "bytes": 179,
+      "sha256": "a5ad94879a5c5a289aeabd5eb77e6087e2580fc94362e53b69d8aa34f8d4171f"
+    },
+    "BOOTSTRAP-NOTES.md": {
+      "bytes": 7306,
+      "sha256": "77c9278c3dff9267236142c762e4f8853c9094f1e9c7a3ad02d1b255cd1b2e3c"
+    },
+    "BROWSER-REVIEW.md": {
+      "bytes": 4533,
+      "sha256": "903a72fc1770965c0206ba053fadd2064d77816a415d1d58c0f0b97a957b6ce8"
+    },
+    "BUILD.md": {
+      "bytes": 6620,
+      "sha256": "586cde1ccfc546e96c7307c028dedb167251848e04dcb3fcb3cd86875a8175d8"
+    },
+    "CONTRIBUTING.md": {
+      "bytes": 1525,
+      "sha256": "c2036a3175057d7db236606a76ff0869727f2dfdd8bcdc8f921519cbd81d66a0"
+    },
+    "DNS-SNTP-NOTES.md": {
+      "bytes": 4155,
+      "sha256": "98c46283e6fe911cc140935206121be38df181fc0a7c35d634fcd962a509c34e"
+    },
+    "FIRMWARE-UPDATES.md": {
+      "bytes": 2626,
+      "sha256": "51f54f5507611d831c18e2d1da1864860c1490b4a5a32af18ed1f943b4164be4"
+    },
+    "GITHUB.md": {
+      "bytes": 2045,
+      "sha256": "c174766f3f7d4525c09ca359a4e81dacd915162c31f6c25d89bb0b86c5dbefb3"
+    },
+    "INSTALL.md": {
+      "bytes": 8283,
+      "sha256": "1fdacc9ab9de6f7563f8e1d92c47037a2acad9b2876d16a8d7101e9d432867af"
+    },
+    "LICENSE": {
+      "bytes": 1089,
+      "sha256": "3921800b801e4f2b8de5fc1c1e5f2d90d055f76b3f9828965917e40946aaf90c"
+    },
+    "MANAGEMENT-VLAN.md": {
+      "bytes": 4868,
+      "sha256": "d7aa93316eb6b8d8f2aef3e688179337248f8b0f7b6d55d4482135506a906852"
+    },
+    "MIGRATION.md": {
+      "bytes": 7228,
+      "sha256": "cb9e77a56330d707235e45b264f65ebd3aa8aed75b52cc40d9b7f6ba23c591d6"
+    },
+    "NATIVE-WRITES.md": {
+      "bytes": 3690,
+      "sha256": "31e7b8b23dda0d6e5477ba738438bfaa5c16a34de82dba3a03a401f90366af24"
+    },
+    "README.md": {
+      "bytes": 5337,
+      "sha256": "a2e30243e18fa95e60622dfeedbf045c10596c0e5fa26c6c59b73da2b1787478"
+    },
+    "RECOVERY.md": {
+      "bytes": 3560,
+      "sha256": "7bdeaa7ee889200437560f2380917dc87705a753b971483f27e9c72450681962"
+    },
+    "RELEASE-PLAN.md": {
+      "bytes": 5035,
+      "sha256": "189a7b49c5217b09db8c0e6a79befa6c868f36b6cb797d6dd3982675c798ad9b"
+    },
+    "REVIEW.md": {
+      "bytes": 4181,
+      "sha256": "02ee4bee9bae73b78739892c41869a5534759c9ab0baf1c401ebfb601d546bb3"
+    },
+    "ROADMAP.md": {
+      "bytes": 1705,
+      "sha256": "cf44b948cde2647c01766e5058f7885fda2acacf9e4d73a9eb83ac9310fe7438"
+    },
+    "SERIAL-INSTALLER.md": {
+      "bytes": 7459,
+      "sha256": "56d03bd54f4548ccd2af808e4f720b07897be40d302e7d4035f2276927aa6c64"
+    },
+    "SFP-NOTES.md": {
+      "bytes": 8160,
+      "sha256": "8d525d26e19d30d163f2994dcda2ff17a5ea970a85f1a83c8e45dd00ba237642"
+    },
+    "TERMINAL.md": {
+      "bytes": 3555,
+      "sha256": "407ea1c54efd097bc4a98b61fa6ef49a37d43b8977e52eaf46adff7312058228"
+    },
+    "THIRD_PARTY.md": {
+      "bytes": 1192,
+      "sha256": "9c85f4ce4999407ad0e6d8e8b650885b164e27a17662558c70b052137cb3e353"
+    },
+    "designs/mxl-management/LICENSE-RTLPlayground": {
+      "bytes": 1087,
+      "sha256": "8f68d3333a5c2bf9ed9f9d670394329110458870e67bfe4c4748346cfb7e0c83"
+    },
+    "designs/mxl-management/console-view.mjs": {
+      "bytes": 4939,
+      "sha256": "2ccfeb4fdfd2bda7c70c16f74f45b7f5f7194d49c39af42f25c8bf46f64021e7"
+    },
+    "designs/mxl-management/console.mjs": {
+      "bytes": 3426,
+      "sha256": "10c3d0988f8074c6614d8ca5a1f409fcc5c1705a513d1ea5f8c75f516f887b42"
+    },
+    "designs/mxl-management/favicon.svg": {
+      "bytes": 322,
+      "sha256": "53051993dc87ec0f6bb11c096e294a1ec62b1e296db52bf4c3ed91e4788042d8"
+    },
+    "designs/mxl-management/firmware-update.mjs": {
+      "bytes": 5009,
+      "sha256": "3b053b2e9766f9689d3645bfe15e3efd01706a235c8c724b0259183a77265af2"
+    },
+    "designs/mxl-management/firmware.mjs": {
+      "bytes": 1664,
+      "sha256": "84535b56808300a651d6d89cff04667b886ea464f8e097295afc70c26cfc42de"
+    },
+    "designs/mxl-management/inventory.mjs": {
+      "bytes": 1089,
+      "sha256": "b8cb5ca25c430c993cf2c7edb453a380fc88318bb0680566e45b63c0b7206fc7"
+    },
+    "designs/mxl-management/live-app.mjs": {
+      "bytes": 56729,
+      "sha256": "e0ca1bd21b8a5308b17eeea7693deec95483092fe42ad92a0b5494d52d07a1a0"
+    },
+    "designs/mxl-management/live-dom.mjs": {
+      "bytes": 1812,
+      "sha256": "fa0ed67928e246509299ca379671d16e2ce9f52bab06162025823e5a4c71e542"
+    },
+    "designs/mxl-management/live-model.mjs": {
+      "bytes": 2114,
+      "sha256": "7721de7b78c54421d6ab9cc84ec5f6e5e2ba924a54120a604055856b60d24c84"
+    },
+    "designs/mxl-management/live-session.mjs": {
+      "bytes": 520,
+      "sha256": "f73088891af008c8792dfdbfa2639e154aa864c2f329ad3d57143fd915c012a8"
+    },
+    "designs/mxl-management/live-vlans.mjs": {
+      "bytes": 6954,
+      "sha256": "7576b468308b84695128b7014660c03295d8310185ff43b092265e066cdb5487"
+    },
+    "designs/mxl-management/live.css": {
+      "bytes": 10687,
+      "sha256": "737e331f186d9831b99ab5f3fd9d3797bbdb459c1658310f61bbcd5db64157c6"
+    },
+    "designs/mxl-management/live.html": {
+      "bytes": 2960,
+      "sha256": "771d865a85e0004d4d515d5956a06f0bc2fbc8eb065d430ab1ebbf4efe132302"
+    },
+    "designs/mxl-management/management-vlan-view.mjs": {
+      "bytes": 4711,
+      "sha256": "07fea417c26bbe972c5724a4acf4419bec866d48876969865a22bfeeb22c6102"
+    },
+    "designs/mxl-management/management-vlan.mjs": {
+      "bytes": 5299,
+      "sha256": "f423ee8e68447954c4d21cb279de8b6a604115a1cd3123500d4a613ed2531668"
+    },
+    "designs/mxl-management/native-api.mjs": {
+      "bytes": 15544,
+      "sha256": "a794d15337d2f8d48e87dd12b69f7f95c73e784fb18a5ebe6b3d34fdd16e4afd"
+    },
+    "designs/mxl-management/native-contracts.mjs": {
+      "bytes": 15225,
+      "sha256": "09beea1dcf01636ba23a9d24aa2e083befd164ba047cc202b90ba912b981c62e"
+    },
+    "designs/mxl-management/rtl-base.css": {
+      "bytes": 9248,
+      "sha256": "af9361db8505f562169d06b2a3ed10e54b5bc91900e503374b8f424add31c582"
+    },
+    "designs/mxl-management/sfp-view.mjs": {
+      "bytes": 2781,
+      "sha256": "43753a58e84c86162b092b639055e8b4373a7bb69b30332c0b9509c9e546233a"
+    },
+    "designs/mxl-management/sfp.mjs": {
+      "bytes": 6093,
+      "sha256": "d8c0e70b937495e9d19d0188d27bd395ccceca3fa7281375b3fd56866eaf9099"
+    },
+    "designs/mxl-management/sha256.mjs": {
+      "bytes": 1817,
+      "sha256": "fd2062d71350ea4d73c089e3d6b805f761294e48ef7837030611f002d30c5026"
+    },
+    "designs/mxl-management/styles.css": {
+      "bytes": 14723,
+      "sha256": "9780bcee341175b0b2e27dab3873338422f2d3d342d00f55b02c6966aa638fb1"
+    },
+    "designs/mxl-management/ui.mjs": {
+      "bytes": 6601,
+      "sha256": "11bfc468ff5966bbedeb584f51f29ef9b23b557f737b00d5bc2aa3d210ed134c"
+    },
+    "firmware/console_native.c": {
+      "bytes": 6907,
+      "sha256": "cd6dedb74f526d9a6ca91b51f15a50d687ccb3bcc7bb8a7b6333c4151eebdd15"
+    },
+    "firmware/console_native.ld": {
+      "bytes": 436,
+      "sha256": "cd9cd71898ec39cadd5af59306f3ad64789e907c08dc887b3ae1409a3144a8a3"
+    },
+    "firmware/console_ring.c": {
+      "bytes": 1470,
+      "sha256": "36242133b6b367ea8567c8f90590e0ef804fbd6d352ec7cae0a5092553e38cba"
+    },
+    "firmware/console_ring.h": {
+      "bytes": 770,
+      "sha256": "f072cdf91573c1dd055d6be8e5faa7e4d27dbad94d3d6402f7a0800398c00b4d"
+    },
+    "firmware/dns_context_guard.S": {
+      "bytes": 650,
+      "sha256": "32cfba8b7997712a27d55aa7ae7d0f0e23aee3d775b9d811cd295a25f2b6a9e5"
+    },
+    "firmware/management_vlan_controller.c": {
+      "bytes": 5724,
+      "sha256": "78216e4e49252255ba02e5944a0c9a88442251e08db9960bea77c58d4915a427"
+    },
+    "firmware/management_vlan_controller.h": {
+      "bytes": 2420,
+      "sha256": "ae1324c667992826a3aa82239d967799c2759b00de3306f2715908cf3532d42b"
+    },
+    "firmware/management_vlan_core.c": {
+      "bytes": 4513,
+      "sha256": "717dd4fc3ca646826b4d2f683c022623536767bf22e88a10f155c0a10cb6a73e"
+    },
+    "firmware/management_vlan_core.h": {
+      "bytes": 1778,
+      "sha256": "a89c911760417cf476435daf1cb57c481a0fc86560744b64610726a1274fd778"
+    },
+    "firmware/management_vlan_egress_gate.c": {
+      "bytes": 1537,
+      "sha256": "9b1d302d60668fa587e77fb2b863079ed970e86c85bac6e24307ba79dafc4184"
+    },
+    "firmware/management_vlan_egress_gate.h": {
+      "bytes": 1219,
+      "sha256": "094a040498c62d838b0ada921a8c67631503cfb0009635553389456979152347"
+    },
+    "firmware/management_vlan_identity.c": {
+      "bytes": 1376,
+      "sha256": "ff805ebe8c66a0d7a0b2ded785c24793265654157ed5853405bd543e89d9bff4"
+    },
+    "firmware/management_vlan_identity.h": {
+      "bytes": 1250,
+      "sha256": "6de4914750d6f2182f77b3d55a8ae966fc3e19307e8e5beab2cd3e23dd4a7b18"
+    },
+    "firmware/management_vlan_iprule.c": {
+      "bytes": 4741,
+      "sha256": "36f68a99ec5348958f190b8b9319b4e02c73cc64894707d77426c7d7b91e3951"
+    },
+    "firmware/management_vlan_iprule.h": {
+      "bytes": 1744,
+      "sha256": "10cdcd37856252bd5bd0070475070206d76d99e806b4f2af0cb410a5824d2b2e"
+    },
+    "firmware/management_vlan_native.c": {
+      "bytes": 13219,
+      "sha256": "e0575c166a8e11141248b15ac99923ca7edc644dac8deb89806e09d588ff3ea1"
+    },
+    "firmware/management_vlan_native.h": {
+      "bytes": 2665,
+      "sha256": "96915e309bc8d581fab8df519fbfc31c71b2e7127cb2794f1939cda797805005"
+    },
+    "firmware/management_vlan_observer.c": {
+      "bytes": 12993,
+      "sha256": "7b3ea7fac73cec7b07707530702e758d45deed1e53d188099c30a1b4bef5408c"
+    },
+    "firmware/management_vlan_owner.c": {
+      "bytes": 2260,
+      "sha256": "cbb54a67e209a2379fe6331c15519b8d02704b526422e4d92bcad721c8e6d8e3"
+    },
+    "firmware/management_vlan_owner.h": {
+      "bytes": 1866,
+      "sha256": "9aec9dbbfac238df6854e194d47337ce8c9c5cfe632c0124e5cdf18230ea47c6"
+    },
+    "firmware/management_vlan_pce.c": {
+      "bytes": 4906,
+      "sha256": "42f7b977f37cd9c7897c1955e35707053f189c2a7a48c357f14e6731f3d90041"
+    },
+    "firmware/management_vlan_pce.h": {
+      "bytes": 831,
+      "sha256": "aafbc3a0093daf995a00f2406dd7429d662072c8c0e3003a4a1497557e89281d"
+    },
+    "firmware/management_vlan_probe.c": {
+      "bytes": 6544,
+      "sha256": "e30db01bbb65044db3ee9654acece53b132c02fc5167861b1a76ba3fa0ef91ca"
+    },
+    "firmware/management_vlan_probe.ld": {
+      "bytes": 504,
+      "sha256": "5ac88ee03a6f43575995373a43f77f51098e3173a4ae74b5f34a9a2ea879b660"
+    },
+    "firmware/management_vlan_requests.c": {
+      "bytes": 4211,
+      "sha256": "b1b30810a008f420ee106cca8e7992f66eab2dbb1e71dc72ac6f0eada92053a6"
+    },
+    "firmware/management_vlan_requests.h": {
+      "bytes": 1073,
+      "sha256": "d39a6ccaf017aced59049426c6d6eb8e75b497f09fffafd3d78cf9fa38815f2a"
+    },
+    "firmware/management_vlan_runtime.c": {
+      "bytes": 16591,
+      "sha256": "3db5cac46ed7543e140765f54e43dce34422675feddb0c563686cf3cdb943f5e"
+    },
+    "firmware/management_vlan_runtime.ld": {
+      "bytes": 595,
+      "sha256": "d615fc0239385fd3ef99666def358f61eeec280a32b1be31f97ca48cc33b83c4"
+    },
+    "firmware/management_vlan_store.c": {
+      "bytes": 4401,
+      "sha256": "409f53f289fe40b64316258c2dc0261f129b001584e97c856cd47d9fa4fa214f"
+    },
+    "firmware/management_vlan_store.h": {
+      "bytes": 1563,
+      "sha256": "5ea34f02e624ebd7741e733889a16c080cdf824811867fd4186c2b583856ec06"
+    },
+    "firmware/management_vlan_tx.c": {
+      "bytes": 2467,
+      "sha256": "784cc7f3b282e11e37842e0e8e67c9f8c49335eebc20b89008f46ad0c1cd45d3"
+    },
+    "firmware/management_vlan_tx.h": {
+      "bytes": 1180,
+      "sha256": "b6e00cb854f32ebb2bc22465ea7d26580095d01dc22ad3d6f66d437599abfab5"
+    },
+    "requirements-build.txt": {
+      "bytes": 112,
+      "sha256": "2a0b3ce39bd131e7a37310dfaf17e2e7f777470c30454ec0d5974a7ce501283b"
+    },
+    "tests/console.test.mjs": {
+      "bytes": 4013,
+      "sha256": "c802ee81238603bce006c9bf521fdaf5c0a7841e3bfa4e82cf7f24296523b29d"
+    },
+    "tests/console_ring_fixture.c": {
+      "bytes": 1301,
+      "sha256": "b60b9804e18805c64b6f35016ae94542b6196374fbcca955b05d0c9d640cc09c"
+    },
+    "tests/inventory.test.mjs": {
+      "bytes": 2484,
+      "sha256": "97848df469031c5d63debc6d1b6f17616ce4e6e078afc1206d9272e6e45986ae"
+    },
+    "tests/live-session.test.mjs": {
+      "bytes": 1685,
+      "sha256": "dced026dcfafc48cc4050ff2f3d639d141a70026fed22e3a7282d416fe07cce8"
+    },
+    "tests/qos.test.mjs": {
+      "bytes": 981,
+      "sha256": "7af4c4cadc6a44834675f1e2700046ffd6ecc75032d8badf776b19c51c0870bf"
+    },
+    "tests/sfp.test.mjs": {
+      "bytes": 4217,
+      "sha256": "203e96797ef7925760601bbfe30840ec50f39f7de5ab8195b8871d562c180b7b"
+    },
+    "tests/test_bootstrap_preflight.py": {
+      "bytes": 6350,
+      "sha256": "274ed3402a004f26b049cf0b02a36b720a76f353501bab872c6fbc3868e2e032"
+    },
+    "tests/test_clean_build.py": {
+      "bytes": 1953,
+      "sha256": "238bd6fd8e6d8da2c8d53384934e56136c2b161e24cf64c4ab0a4e0c1d483d7c"
+    },
+    "tests/test_diagnostics.py": {
+      "bytes": 1088,
+      "sha256": "2692a7fe72a46c2f10f3f5ce657ebff4046291bca43871b7aac73e3a33af6df5"
+    },
+    "tests/test_public_key.py": {
+      "bytes": 1528,
+      "sha256": "30df5c2dab04da992f7387ec40b51d4ea8e2d40f2da6b35725c0084cfbed9339"
+    },
+    "tests/test_publication.py": {
+      "bytes": 2119,
+      "sha256": "b26fde1d4de5f2855478bd3584907e847e7709899a71bbfecc4a2b63c77f6454"
+    },
+    "tests/test_serial_installer.py": {
+      "bytes": 15957,
+      "sha256": "45d2f4ca8d4931e42d1cb4ec04d81e9139c23be4e26af48e2576ba1f5c146063"
+    },
+    "tests/test_sfp_transfer_plan.py": {
+      "bytes": 4608,
+      "sha256": "551a618bee6666032247eb013d7572f0e0e7df9e1a8546d976a837dd8aca1458"
+    },
+    "tests/test_upload_native_ui.py": {
+      "bytes": 5353,
+      "sha256": "b467d85c240e1802ac7dc132f0b635026ff8910da877f8bf0344f16a860f299c"
+    },
+    "toolchain/arc/Dockerfile": {
+      "bytes": 438,
+      "sha256": "9a932822e509c8c05904f717d209721a067883b8348764ac56bb0a2106cb601a"
+    },
+    "tools/MxlAssembleFile.java": {
+      "bytes": 906,
+      "sha256": "8af9b69f2b9de1c391de54a82ed1078e220b1fb202bf21473215134a7aadc754"
+    },
+    "tools/MxlVerifyInstructions.java": {
+      "bytes": 1418,
+      "sha256": "cd795ffae9b7a68febe06062ffd0c624dc7399762efa4bddb6a85e53b1a89a67"
+    },
+    "tools/build_console_endpoint.py": {
+      "bytes": 2895,
+      "sha256": "2763d7ac4a72c4a1932a4a7fc62b14cd4de26cc9230192af7e910f52e2594b49"
+    },
+    "tools/build_developer_update.py": {
+      "bytes": 2730,
+      "sha256": "c5b1e691af057a8ef8cd093f3823c52ef1168d22b868740d8a14146c1810cbdb"
+    },
+    "tools/build_dma_trace_candidate.py": {
+      "bytes": 3772,
+      "sha256": "081ecfdee147c972aefd0caa94061b47df87bd3a13aa90a85676c731d06a0b0e"
+    },
+    "tools/build_dns_guard_candidate.py": {
+      "bytes": 2716,
+      "sha256": "2858f3d8d74d9fac52d2660ef186c21514813fc6932ca65157c115534fa24d2f"
+    },
+    "tools/build_inventory_endpoint.py": {
+      "bytes": 2371,
+      "sha256": "150c4c48667d2e8718af27558ea973bd05c149bfffa77727e44c99b67ea375d2"
+    },
+    "tools/build_jumbo_endpoint.py": {
+      "bytes": 2099,
+      "sha256": "99b5b9773adc7d7db0df2740f7f2f3a74db56943a6439d0a4f50c6fc2b0ca9e7"
+    },
+    "tools/build_management_probe.py": {
+      "bytes": 11007,
+      "sha256": "15aaf541436678297e9b40a02db977f59199b3646a49a74bb8439aec5841a050"
+    },
+    "tools/build_management_runtime.py": {
+      "bytes": 6937,
+      "sha256": "ebc43585da0e061e4e3c8bee382cc40e89357a5540ab1d46ada634f3f9a582e9"
+    },
+    "tools/build_native_ui.py": {
+      "bytes": 5721,
+      "sha256": "108d09a7d715898f61efaa19fc73aaa380e9ead9d0ef2d2c04230a144c6a8032"
+    },
+    "tools/build_native_ui_firmware.py": {
+      "bytes": 15172,
+      "sha256": "04dbb952f8f0cae8f6ae89d2b821f56a3a94be42a05236ce6593102f30a17014"
+    },
+    "tools/build_sfp_endpoint.py": {
+      "bytes": 2227,
+      "sha256": "f524fb8be70fc3a66f790df6b70c7d7a180440b243df76c21a64faabbce92c31"
+    },
+    "tools/build_v2_migration_candidate.py": {
+      "bytes": 8555,
+      "sha256": "6e7643d2b4f878c6e218bd7eea98881e2e948560156ffecc8d2805ecd92fb0b1"
+    },
+    "tools/capture_readonly.py": {
+      "bytes": 3997,
+      "sha256": "147732bc101978ac2ad939bc269ca71a134bfece42615feb99d845be4c9f92c8"
+    },
+    "tools/check_source_tree.py": {
+      "bytes": 1881,
+      "sha256": "6b99b2641273fbb9780ad839016a026e4b01a9cf8ce0d98e1d874316c492623b"
+    },
+    "tools/collect_diagnostics.py": {
+      "bytes": 3277,
+      "sha256": "a3e03e9e78c3ea64c70586a423e2b4b4ded0e333d7abf3262fd324b46311888f"
+    },
+    "tools/inspect_bootstrap.py": {
+      "bytes": 10540,
+      "sha256": "e8ad0254ec4db05771bdf994cc1230980cc70244fca6a318f49a2379a8436840"
+    },
+    "tools/install_serial.py": {
+      "bytes": 18384,
+      "sha256": "a4f8eb451819de577c11f50b90ca607b66ca98a57b27c0c02fc64d81aa90f894"
+    },
+    "tools/installer_image.py": {
+      "bytes": 5210,
+      "sha256": "6d1b568d9ea8e6e15d80b2a089ff91374c4ea70bae5d66265c1757d019ac0195"
+    },
+    "tools/installer_uart.py": {
+      "bytes": 3365,
+      "sha256": "6822f2cfbbb65074e154ea34975bbe30dbcdb5c8da2fa4b3908196fdd5db7826"
+    },
+    "tools/live_backend.py": {
+      "bytes": 25529,
+      "sha256": "a5d63f3f74ad4a0179e8fcd2776d2eab6bf3ba6ad85e07b65723686573a8fd22"
+    },
+    "tools/mxl_uart_console.py": {
+      "bytes": 2087,
+      "sha256": "05670142ec72b703fbe9efbf9b5c0efd9f755ff953475e70dfb88f9299285425"
+    },
+    "tools/native_arc_branches.json": {
+      "bytes": 4164,
+      "sha256": "b9c98f353cf1316646fd3d6804f00442b71d0232dacceb5697df9ecbb4a53eb5"
+    },
+    "tools/native_arc_opcodes.json": {
+      "bytes": 2605,
+      "sha256": "8559b83cfa7f19892abae8bc51aa69985858008dce4c3df2a390c2f27e0dc8f8"
+    },
+    "tools/native_layout.py": {
+      "bytes": 1996,
+      "sha256": "e7c3f12c4eaeafc36d4ab13bb488e552a7e139357d5e2cbf74f6664682afbf8a"
+    },
+    "tools/package_developer_preview.py": {
+      "bytes": 7478,
+      "sha256": "b1112209f825fc8f31e4e8d9cdd6e1a7c75138fbefc8b1e9f8f6c050e34980dc"
+    },
+    "tools/prepare_github_repo.py": {
+      "bytes": 3643,
+      "sha256": "e7ab90901a15d9ee6ac459a21a778c334c31f26e825764f0c005b6a193d8a2c0"
+    },
+    "tools/prepare_inventory_endpoint.py": {
+      "bytes": 5143,
+      "sha256": "44d2047ef91306a26b06787f9bd1d4af030d7cd470f8bf3d6ca6898a9e019e14"
+    },
+    "tools/prepare_jumbo_endpoint.py": {
+      "bytes": 5862,
+      "sha256": "7fcf59064a0dc512193ce583bb1e530a2aa923a4f008755a9fcc4324f35fa658"
+    },
+    "tools/prepare_native_base.py": {
+      "bytes": 2111,
+      "sha256": "2dcac6780d5dc464c13f67f48f3a4927ca790b0ebaa0d30a9e8410cadca76315"
+    },
+    "tools/prepare_sfp_endpoint.py": {
+      "bytes": 7355,
+      "sha256": "dc9979764128d1d2cd2d18399e7e6aea8d0547c4a50471224af6c323547da7f4"
+    },
+    "tools/read_public_key.py": {
+      "bytes": 1430,
+      "sha256": "f5898c8cd9d74ec03f5a67af1d02946b090d7f1136092ffb63f6a6e0def9606f"
+    },
+    "tools/spi_layout.py": {
+      "bytes": 8513,
+      "sha256": "9892e39bd68a25e697f582225375d8de4f94d1589e6de4c6538cb7b9fcb627f9"
+    },
+    "tools/switch_transport.py": {
+      "bytes": 5395,
+      "sha256": "1dfd9708ebc8fce79fb12e2cf286af892f2c814f263eab4065b5b920c8cb5a31"
+    },
+    "tools/upload_native_ui.py": {
+      "bytes": 9120,
+      "sha256": "fe72aa8fcb236a3981ae7e62f1a9e4873f053ba2033b660484ede7bff694c486"
+    },
+    "tools/verify_firmware_signatures.py": {
+      "bytes": 3459,
+      "sha256": "a27dc44c98e762b5683a30c9f374deb77a5560c8cf6a85c52b91f8a35728e7c4"
+    },
+    "designs/mxl-management/native-metadata.mjs": {
+      "bytes": 3947,
+      "sha256": "2d6678dbbbf4c0859e05eada6dd2b3834dbb56fec3de48fcf706e21e6531dd0b",
+      "source": "generated public contracts; vendor CLI help omitted"
+    }
+  }
+}
